@@ -1,0 +1,19 @@
+.hero {
+    
+    .hero__title {
+        margin-top: 12rem;
+    }
+    .hero__image {
+        position: fixed;
+        width: 100%;
+
+    }
+    .hero__subtitle {
+        position: relative;
+        z-index: 2;
+        margin-top: 40vw;
+        font-size: 1.2rem;
+    }
+
+
+}

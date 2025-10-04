@@ -1,0 +1,29 @@
+.navbar {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    font-size: 1.2rem;
+    padding: 1.5rem 5rem;
+    width: fit-content;
+    position: fixed;
+    z-index: 2;
+    border-radius: 10rem;
+    margin-top: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+
+
+    .navbar__list {
+        display: flex;
+        gap: 2rem;
+
+        .navbar__link {
+            &:hover {
+                color: gray;
+            }
+        }
+    }
+}
