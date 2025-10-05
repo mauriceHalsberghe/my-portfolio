@@ -1,24 +1,54 @@
 .about {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 5rem;
     z-index: 2;
-    margin-top: 10rem;
+    padding: 12rem 0;
+    padding-bottom: 0;
+
+    .about__intro {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 5rem;
+        margin-bottom: 5rem;
+    }
 
     .about__title {
         font-family: var(--font-rubikmonoone);
-        font-size: 5rem;
+        font-size: 6rem;
+        color: var(--main-blue);
+        width: min-content;
+        line-height: 80%;
+        text-align: right;
+        text-shadow: -1px 1px 3px rgba(0,0,0,0.4);
     }
 
-    .about__content {
+    .about__text {
         font-size: 1.1rem;
         width: 40vw;
         padding: 2rem;
         background: rgba(255, 255, 255, 0.21);
-        border-radius: 16px;
+        border-radius: 2rem;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(5px);
         border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .about__content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        width: 60rem;
+    }
+
+    .about__card {
+        width: 8rem;
+        height: 8rem;
+        border-radius: 2rem;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: background-color 0.2s;
+        &:hover {
+            background-color: var(--main-yellow-tr);
+        }
     }
 }

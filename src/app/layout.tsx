@@ -1,16 +1,8 @@
+// app/layout.tsx
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Rubik_Mono_One } from "next/font/google";
+import { Rubik_Mono_One } from "next/font/google";
 import "./ui/globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import ParallaxWrapper from "./components/ParallaxWrapper";
 
 const rubikMonoOne = Rubik_Mono_One({
   subsets: ["latin"],
@@ -31,10 +23,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${rubikMonoOne.variable} antialiased`}
-      >
-        {children}
+      <body className={`${rubikMonoOne.variable} antialiased`}>
+        <ParallaxWrapper>{children}</ParallaxWrapper>
       </body>
     </html>
   );
