@@ -21,10 +21,14 @@
 
         .navbar__link {
             font-weight: 500;
-            transition: color .2s;
+            transition: color .3s;
             &:hover {
                 color: var(--main-blue);
             }
         }
     }
+}
+
+.navbar__link.active {
+  color: var(--main-red)
 }

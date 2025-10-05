@@ -1,26 +1,47 @@
-"use client"
+"use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "../ui/hero.module.css";
 import Image from "next/image";
-
 import { Parallax } from "react-scroll-parallax";
 
 export default function Hero() {
-  const [opacity, setOpacity] = useState(1);
+  const titles = [
+    "Full-Stack Developer",
+    "JavaScript Enthusiast",
+    "Student at Artevelde University",
+    "Open Source Contributor",
+    "UI/UX Explorer",
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [fadeOpacity, setFadeOpacity] = useState(1);
+  const [scrollOpacity, setScrollOpacity] = useState(1);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const maxScroll = 600;
       const factor = Math.min(scrollY / maxScroll, 1);
-
-      setOpacity(1 - factor * 0.95);
+      setScrollOpacity(1 - factor * 1);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFadeOpacity(0);
+
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % titles.length);
+        setFadeOpacity(1);
+      }, 300);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [titles.length]);
 
   return (
     <section className={styles.hero} id="hero">
@@ -33,14 +54,25 @@ export default function Hero() {
             alt="Maurice Halsberghe"
             className={styles.hero__image}
             style={{
-              opacity: opacity,
+              opacity: scrollOpacity + 0.15,
               transition: "opacity 0.2s",
             }}
           />
         </h1>
-        <p className={styles.hero__subtitle} style={{ opacity: opacity, transition: "opacity 0.2s"}}>
-          Junior Full-Stack Developer
+
+        <p
+          className={styles.hero__subtitle}
+          style={{
+            opacity: fadeOpacity * scrollOpacity + 0.1,
+            transition: "opacity 0.3s",
+          }}
+        >
+          {titles[currentIndex]}
         </p>
+
+        <Link href='#about' className={styles.scrollDown} style={{ opacity: scrollOpacity*0.5, transition: "opacity 0.3s" }}>
+          <div className={styles.arrow} />
+        </Link>
       </Parallax>
     </section>
   );
