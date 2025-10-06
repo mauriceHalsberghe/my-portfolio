@@ -1,6 +1,6 @@
 .hero {
   width: 100%;
-
+  
   .hero__title {
     margin-top: 11rem;
   }
@@ -50,3 +50,4 @@
     transform: rotate(45deg) translate(4px, 4px);
   }
 }
+
