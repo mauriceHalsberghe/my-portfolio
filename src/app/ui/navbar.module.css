@@ -23,12 +23,12 @@
             font-weight: 500;
             transition: color .3s;
             &:hover {
-                color: var(--main-blue);
+                color: var(--main-red);
             }
         }
     }
 }
 
 .navbar__link.active {
-  color: var(--main-red)
+  color: var(--main-blue)
 }

@@ -6,7 +6,7 @@ import styles from "../ui/navbar.module.css";
 
 export default function Navbar() {
   const sections = ["hero", "about", "projects", "contact"];
-  const [activeSection, setActiveSection] = useState("hero");
+  const [activeSection, setActiveSection] = useState("start");
 
   useEffect(() => {
     const handleScroll = () => {

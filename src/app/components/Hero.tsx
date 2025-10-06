@@ -22,12 +22,13 @@ export default function Hero() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const maxScroll = 600;
-      const factor = Math.min(scrollY / maxScroll, 1);
-      setScrollOpacity(1 - factor * 1);
+      const factor = Math.min(scrollY / 600, 1);
+      setScrollOpacity(1 - factor);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    const throttled = () => requestAnimationFrame(handleScroll);
+    window.addEventListener("scroll", throttled);
+    return () => window.removeEventListener("scroll", throttled);
   }, []);
 
   useEffect(() => {
@@ -70,7 +71,11 @@ export default function Hero() {
           {titles[currentIndex]}
         </p>
 
-        <Link href='#about' className={styles.scrollDown} style={{ opacity: scrollOpacity*0.5, transition: "opacity 0.3s" }}>
+        <Link
+          href="#about"
+          className={styles.scrollDown}
+          style={{ opacity: scrollOpacity * 0.5, transition: "opacity 0.3s" }}
+        >
           <div className={styles.arrow} />
         </Link>
       </Parallax>
