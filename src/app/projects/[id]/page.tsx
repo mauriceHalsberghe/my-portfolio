@@ -4,8 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "../../ui/project.module.css"
 
-export default function ProjectPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+export default async function ProjectPage({ params }: { params: { id: string } }) {
+  const { id } = await params;
 
   const project = projects.find((p) => p.id.toString() === id);
 
@@ -21,7 +21,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
         </div>
     )
   }
-
+  
   return (
     <>
       <Navbar />
