@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Boudewijn Filterapp",
+    "tags": ["JavaScript", "CSS", "SQLite"],
+    "banner_img": "/images/boudewijn_1.png",
+    "description": [
+      "This project was made for Boudewijn Seapark. It keeps track of what employees do certain tasks, where and when. It was a group project in teams of 3, and it took us about 2 and a half months and more than 20.000 lines of code to complete.",
+      "fddf"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Vista Kanban",
+    "tags": ["React", "Strapi", "Vite"],
+    "banner_img": "/images/kanban_1.png",
+    "description": [
+      "Lorem", 
+      "lorem"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "First Portfolio",
+    "tags": ["CraftCMS", "CSS", "Twig"],
+    "banner_img": "/images/portfolio_1.png",
+    "description": [
+      "Lorem", 
+      "lorem"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Best of 2024",
+    "tags": ["CSS", "Javascript", "HTML"],
+    "banner_img": "/images/bestof_1.png",
+    "description": [
+      "Lorem", 
+      "lorem"
+    ]
+  }
+]
