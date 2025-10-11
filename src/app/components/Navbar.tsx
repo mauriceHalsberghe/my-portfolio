@@ -38,7 +38,7 @@ export default function Navbar() {
         {sections.map((id) => (
           <Link
             key={id}
-            href={`#${id}`}
+            href={`/#${id}`}
             className={`${styles.navbar__link} ${
               activeSection === id ? styles.active : ""
             }`}
