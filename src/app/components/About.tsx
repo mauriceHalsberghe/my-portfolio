@@ -22,14 +22,19 @@ export default function About() {
     { name: "Git", src: "svg/git.svg", info: "A version control system for tracking changes in code collaboratively." },
   ];
 
-  const [hoveredTech, setHoveredTech] = useState<Tech | null>(null);
+  const [selectedTech, setSelectedTech] = useState<Tech | null>(null);
+
+  const handleTechClick = (tech: Tech) => {
+    // if clicked tech is already selected, deselect it
+    setSelectedTech(selectedTech?.name === tech.name ? null : tech);
+  };
 
   return (
     <section className={styles.about} id="about">
       <div className={styles.about__intro}>
         <h2 className={styles.about__title}>About me</h2>
         <p className={styles.about__text}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam illum id ullam animi unde rem inventore cumque doloribus, delectus voluptatum deserunt quisquam quasi necessitatibus iure molestiae odio?
+          I’m a Programming student at Artevelde University of Applied Sciences in Ghent. My main passion is back-end development, but I’m also interested in full-stack work. Below, you can find all the technologies I’m familiar with.
         </p>
       </div>
 
@@ -38,9 +43,10 @@ export default function About() {
           {techStack.map((tech) => (
             <div
               key={tech.name}
-              className={styles.about__card}
-              onMouseEnter={() => setHoveredTech(tech)}
-              onMouseLeave={() => setHoveredTech(null)}
+              className={`${styles.about__card} ${
+                selectedTech?.name === tech.name ? styles.active : ""
+              }`}
+              onClick={() => handleTechClick(tech)}
             >
               <Image
                 alt={tech.name}
@@ -54,8 +60,8 @@ export default function About() {
         </div>
 
         <div className={styles.about__tooltip}>
-          <h3>{hoveredTech ? hoveredTech.name : "Hover"}</h3>
-          <p>{hoveredTech ? hoveredTech.info : "over a technology to see more info"}</p>
+          <h3>{selectedTech ? selectedTech.name : "Select a technology"}</h3>
+          <p>{selectedTech ? selectedTech.info : "Click on a technology to see more info"}</p>
         </div>
       </div>
     </section>

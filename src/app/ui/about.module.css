@@ -56,6 +56,13 @@
     }
   }
 
+  .about__card.active {
+    transform: scale(1.05);
+    border: 2px solid var(--accent-color);
+    transition: all 0.2s ease;
+    background-color: var(--main-yellow);
+  }
+
   .about__image {
     z-index: 2;
     margin: 1rem;

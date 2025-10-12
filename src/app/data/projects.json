@@ -3,40 +3,58 @@
     "id": 1,
     "name": "Boudewijn Filterapp",
     "tags": ["JavaScript", "CSS", "SQLite"],
-    "banner_img": "/images/boudewijn_1.png",
+    "banner_img": "boudewijn_1.png",
+    "images": ["boudewijn_2.png", "boudewijn_3.png", "boudewijn_4.png", "boudewijn_5.png", "boudewijn_6.png", "boudewijn_7.png"],
+    "github_link": "",
     "description": [
       "This project was made for Boudewijn Seapark. It keeps track of what employees do certain tasks, where and when. It was a group project in teams of 3, and it took us about 2 and a half months and more than 20.000 lines of code to complete.",
-      "fddf"
+      "We made a login and register page for the employees where they can create their account and login with a pincode. They can complete general, daily, weekly and monthly tasks, and see a progressbar for each department.",
+      "There are daily water analyses to measure for example the temperature and acidity of each pool. If a certain measurement does not meet the quota of the maximum or minimum value, everyone will receive a notification about that measurement.",
+      "The admin has the authority to see, create, update and delete tasks, users and measurement definitions. There is also an option to export all the task data to Excel."
     ]
   },
   {
     "id": 2,
-    "name": "Vista Kanban",
+    "name": "Aero Kanban",
     "tags": ["React", "Strapi", "Vite"],
-    "banner_img": "/images/kanban_1.png",
+    "banner_img": "kanban_1.png",
+    "images": ["kanban_2.png", "kanban_3.png", "kanban_4.png", "kanban_5.png", "kanban_1.png", "kanban_1.png"],
+    "github_link": "https://github.com/pgm-2425-programming-4/final-project-mauriceHalsberghe",
     "description": [
-      "Lorem", 
-      "lorem"
+      "This was my first project while learning React. A basic Kanban Task app with a Strapi server, and possibilities to read, add, edit and delete tasks. All within a React interface styled to resemble Windows 7.", 
+      "All tasks have a category, which also can be created. You can search in realtime for tasks in the search bar, and filter based on task labels. There also is a backlog with pagination, for access to unused tasks.",
+      "For the overall styling, I was inspired by the nostalgic charm and Frutiger Aero aesthetic of Windows 7, using glassy surfaces, radiant hues, and a futuristic feel. Taking a trip down memory lane.",
+      ""
     ]
   },
   {
     "id": 3,
     "name": "First Portfolio",
-    "tags": ["CraftCMS", "CSS", "Twig"],
-    "banner_img": "/images/portfolio_1.png",
+    "tags": ["CraftCMS", "CSS", "ARIA"],
+    "banner_img": "portfolio_1.png",
+    "images": ["portfolio_2.png", "portfolio_3.png", "portfolio_4.png", "portfolio_5.png", "portfolio_1.png", "portfolio_1.png"],
+    "github_link": "https://github.com/pgmgent-web-3/portfolio-front-end-mauriceHalsberghe",
+    "project_link": "https://mauricehalsberghe.github.io/portfolio/",
     "description": [
-      "Lorem", 
-      "lorem"
+      "I used CraftCMS, a content managing system, for the first time while making this project. So i could update the content without writing any more code. This project is an exercise in making websites as accessible as possible ", 
+      "The website consists of multiple pages like home, about, projects and contact. These are all automatically loaded with the content form CraftCMS.",
+      "This was my first project where I made the webpage fully accessible using semantic HTML and correct ARIA-roles. This allows a better user experience for everyone.",
+      ""
     ]
   },
   {
     "id": 4,
     "name": "Best of 2024",
     "tags": ["CSS", "Javascript", "HTML"],
-    "banner_img": "/images/bestof_1.png",
+    "banner_img": "bestof_1.png",
+    "images": ["bestof_2.png", "bestof_3.png", "bestof_4.png", "bestof_5.png", "bestof_1.png", "bestof_1.png"],
+    "github_link": "https://github.com/pgm-2425-atwork-1/project-2-mauriceHalsberghe",
+    "project_link": "https://pgm-2425-atwork-1.github.io/project-2-mauriceHalsberghe/",
     "description": [
-      "Lorem", 
-      "lorem"
+      "A website to practice my CSS and front-end JavaScript skills. This webpage displays an overview of the best movies, music, and games of the year.", 
+      "The assignment for this project was to recreate Johan Ronsse’s website as accurately as possible. All the visible data is retrieved from an API.",
+      "The website features a fully responsive design, accessible from desktop to smartphone. There is a light/dark mode switcher and a possibility to like songs, these are saved on the local storage.",
+      ""
     ]
   }
 ]

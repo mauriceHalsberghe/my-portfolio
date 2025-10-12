@@ -10,9 +10,9 @@ export default function Hero() {
     "Full-Stack Developer", 
     "JavaScript Enthusiast", 
     "Student at Artevelde University", 
-    "Open Source Contributor", 
-    "UI/UX Explorer", 
-  ]; 
+    "Back-End Developer", 
+    "API Explorer"
+  ];
  
   const [currentIndex, setCurrentIndex] = useState(0); 
   const [fadeOpacity, setFadeOpacity] = useState(1); 

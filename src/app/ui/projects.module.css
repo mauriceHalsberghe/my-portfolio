@@ -15,6 +15,7 @@
     }
 
     .projects__content {
+        text-align: center;
         padding: 0 20rem;
         font-size: 1.2rem;
     }
@@ -37,10 +38,10 @@
         height: min-content;
         position: relative;
 
-        transform: translateY(4rem); /* matches keyframes */
+        transform: translateY(4rem);
         animation-name: slideUp;
         animation-timeline: view();
-        animation-range: 0% 40%; /* extend per card for stagger */
+        animation-range: 0% 40%;
         animation-fill-mode: forwards;
         animation-timing-function: ease-out;
 

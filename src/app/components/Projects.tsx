@@ -15,7 +15,7 @@ export default function Projects() {
       <div className={styles.projects__cards}>
         {projects.map((project) => (
           <Link key={project.id} href={`/projects/${project.id}`} className={styles.projects__card}>
-            <Image className={styles.projects__image} src={project.banner_img} width={450} height={250} alt={project.name} />
+            <Image className={styles.projects__image} src={"/images/" + project.banner_img} width={450} height={250} alt={project.name} />
             <h3 className={styles.projects__name}>{project.name}</h3>
             <ul className={styles.projects__tags}>
               {project.tags.map((tag) => (
