@@ -1,0 +1,64 @@
+.contact {
+    padding: 10rem 0;
+    margin: 0 auto;
+
+    .contact__content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5rem;
+    }
+
+    .contact__title {
+        font-family: var(--font-rubikmonoone);
+        font-size: 6rem;
+        color: var(--main-red);
+        width: min-content;
+        line-height: 80%;
+        text-align: right;
+        text-shadow: -1px 1px 3px rgba(0, 0, 0, 0.4);
+    }
+
+    .contact__links {
+        font-size: 1.5rem;
+        padding: 2rem 5rem;
+        padding-left: 6rem;
+        background: rgba(255, 255, 255, 0.21);
+        border-radius: 2rem;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .contact__link {
+        position: relative;
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            border-radius: 1rem;
+            left: -1.5rem;
+            transform: translateY(0.75rem);
+            width: 1rem;
+            height: 1rem;
+            background-color: var(--main-red);
+        }
+        &:nth-child(2)::before {
+            background-color: var(--main-blue);
+        }
+                &:nth-child(3)::before {
+            background-color: var(--main-yellow);
+        }
+    }
+
+    .contact__footer {
+        margin-top: 5rem;
+        font-size: 1.2rem;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -1rem);
+    }
+}

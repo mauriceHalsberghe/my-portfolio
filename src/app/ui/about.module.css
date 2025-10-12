@@ -43,7 +43,7 @@
     z-index: 1;
     position: relative;
     display: inline-block;
-    width: fit-content;
+    width: max-content;
     height: fit-content;
     border-radius: 2rem;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -57,15 +57,14 @@
   }
 
   .about__card.active {
-    transform: scale(1.05);
-    border: 2px solid var(--accent-color);
-    transition: all 0.2s ease;
+    transition: background 0.2s ease;
     background-color: var(--main-yellow);
   }
 
   .about__image {
     z-index: 2;
     margin: 1rem;
+    pointer-events: none;
   }
 
   .about__content {
