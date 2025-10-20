@@ -1,5 +1,5 @@
 .project {
-    padding-top: 10rem;
+    padding: 10rem 0;
 
     .project__intro {
         display: flex;
