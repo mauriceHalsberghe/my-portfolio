@@ -7,6 +7,11 @@
         justify-content: center;
         align-items: center;
         gap: 5rem;
+
+        @media (max-width: 1279px) {
+            flex-direction: column;
+            gap: 2rem;
+        }
     }
 
     .contact__title {
@@ -17,17 +22,30 @@
         line-height: 80%;
         text-align: right;
         text-shadow: -1px 1px 3px rgba(0, 0, 0, 0.4);
+        @media (max-width: 768px) {
+            font-size: 4rem;
+            text-align: center;
+        }
+        @media (max-width: 480px) {
+            font-size: 3rem;
+        }
     }
 
     .contact__links {
         font-size: 1.5rem;
-        padding: 2rem 5rem;
+        padding: 1.5rem 5rem;
         padding-left: 6rem;
         background: rgba(255, 255, 255, 0.21);
         border-radius: 2rem;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(5px);
         border: 1px solid rgba(255, 255, 255, 0.3);
+        @media (max-width: 1279px) {
+            padding: 1.5rem 10rem;
+        }
+        @media (max-width: 480px) {
+            padding: 1.5rem 5rem;
+        }
     }
 
     .contact__link {

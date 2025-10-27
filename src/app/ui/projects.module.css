@@ -11,12 +11,26 @@
         text-shadow: -1px 1px 3px rgba(0,0,0,0.4);
         text-align: center;
         width: 100%;
+
+        @media (max-width: 768px) {
+            font-size: 4rem;
+            text-align: center;
+        }
+        @media (max-width: 480px) {
+            font-size: 3rem;
+        }
     }
 
     .projects__content {
         text-align: center;
         padding: 0 20rem;
         font-size: 1.2rem;
+        @media (max-width: 1279px) {
+            padding: 0 20%;
+        }
+        @media (max-width: 768px) {
+            padding: 0 1rem;
+        }
     }
 
     .projects__cards {
@@ -28,8 +42,18 @@
 
         scroll-timeline-name: --imageTimeline;
 
-    }
+        @media (max-width: 1279px) {
+            grid-gap: 1rem;
+            grid-template-columns: auto auto;
+        }
 
+        @media (max-width: 768px) {
+            grid-gap: 0;
+            grid-template-columns: auto;
+            margin: 0 auto;
+            grid-gap: 1rem;
+        }
+    }
 
     .projects__card {
         display: block;
@@ -43,6 +67,10 @@
         animation-range: 0% 40%;
         animation-fill-mode: forwards;
         animation-timing-function: ease-out;
+
+        @media (max-width: 768px) {
+            animation-name: none;
+        }
 
         .projects__image {
             transition: filter 0.2s;
@@ -95,6 +123,16 @@
                 z-index: 5;
             }
         }
+
+        @media (max-width: 768px) {
+            .projects__image {
+                filter: blur(1px) brightness(100%);
+            }
+            h3, .projects__tags {
+                opacity: 1;
+                z-index: 5;
+            }
+        }
     }
 }
 
@@ -121,3 +159,5 @@
 .projects__card:nth-child(7) { animation-range: -10% 20%; }
 .projects__card:nth-child(8) { animation-range: 0% 30%; }
 .projects__card:nth-child(8) { animation-range: 10% 40%; }
+
+

@@ -13,11 +13,23 @@
     margin-top: 2rem;
     left: 50%;
     transform: translateX(-50%);
+
+    @media (max-width: 768px) {
+        padding: 1.2rem 3.5rem;
+    }
+
+    @media (max-width: 480px) {
+        width: fit-content;
+    }
      
 
     .navbar__list {
         display: flex;
         gap: 2rem;
+
+        @media (max-width: 480px) {
+            gap: 1rem;
+        }
 
         .navbar__link {
             font-weight: 500;

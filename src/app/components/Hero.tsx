@@ -59,7 +59,18 @@ export default function Hero() {
             height={100} 
             src="svg/name.svg" 
             alt="Maurice Halsberghe" 
-            className={styles.hero__image} 
+            className={styles.hero__image_large} 
+            style={{ 
+              opacity: scrollOpacity + 0.15, 
+              transition: "opacity 0.2s", 
+            }} 
+          />
+          <Image 
+            width={100} 
+            height={100} 
+            src="svg/name_small.svg" 
+            alt="Maurice Halsberghe" 
+            className={styles.hero__image_small} 
             style={{ 
               opacity: scrollOpacity + 0.15, 
               transition: "opacity 0.2s", 
