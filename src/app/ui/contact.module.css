@@ -1,5 +1,5 @@
 .contact {
-    padding: 10rem 0;
+    padding: 7rem 0;
     margin: 0 auto;
 
     .contact__content {
@@ -70,13 +70,5 @@
                 &:nth-child(3)::before {
             background-color: var(--main-yellow);
         }
-    }
-
-    .contact__footer {
-        margin-top: 5rem;
-        font-size: 1.2rem;
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, -1rem);
     }
 }

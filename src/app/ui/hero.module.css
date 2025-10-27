@@ -9,6 +9,7 @@
     width: 98%;
     margin: 0 auto;
     pointer-events: none;
+    user-select: none;
   }
 
   .hero__image_large {

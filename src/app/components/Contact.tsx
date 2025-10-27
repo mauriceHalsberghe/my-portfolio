@@ -25,10 +25,6 @@ export default function Contact() {
                 </p>
             </div>
         </div>
-
-      <p className={styles.contact__footer}>
-        © {new Date().getFullYear()} Maurice Halsberghe
-      </p>
     </section>
   );
 }

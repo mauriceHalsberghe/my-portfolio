@@ -1,5 +1,8 @@
 import projects from "../../data/projects.json";
+
 import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+
 import Link from "next/link";
 import Image from "next/image";
 import styles from "../../ui/project.module.css"
@@ -76,6 +79,7 @@ export default async function ProjectPage({ params }: { params: { id: string } }
         </div>
         }
       </section>
+      <Footer />
     </>
   );
 }

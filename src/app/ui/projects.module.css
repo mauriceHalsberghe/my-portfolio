@@ -60,6 +60,7 @@
         width: fit-content;
         height: min-content;
         position: relative;
+        user-select: none;
 
         transform: translateY(4rem);
         animation-name: slideUp;
