@@ -57,7 +57,7 @@ export default function Hero() {
           <Image 
             width={100} 
             height={100} 
-            src="svg/name.svg" 
+            src="/svg/name.svg" 
             alt="Maurice Halsberghe" 
             className={styles.hero__image_large} 
             style={{ 
@@ -68,7 +68,7 @@ export default function Hero() {
           <Image 
             width={100} 
             height={100} 
-            src="svg/name_small.svg" 
+            src="/svg/name_small.svg" 
             alt="Maurice Halsberghe" 
             className={styles.hero__image_small} 
             style={{ 
