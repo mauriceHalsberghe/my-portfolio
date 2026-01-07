@@ -59,6 +59,20 @@
   },
   {
     "id": 5,
+    "name": "Binary Library",
+    "tags": ["React", "Next", "Prisma"],
+    "banner_img": "library_1.png",
+    "images": ["library_2.png", "library_3.png", "library_4.png", "library_5.png"],
+    "_github_link": "https://github.com/pgm-2526-programming-5/eindopdracht-mauriceHalsberghe",
+    "description": [
+      "This was my first project using Nextjs. I made an online library for Programming students at Artevelde. Browse books, give ratings and add items to your wishlist.", 
+      "After you register you get a confirmation mail using Resend, you can search for books, view book details and add a rating. A user can also add books to their wishlist.",
+      "The admin can add, edit and delete books. They also can borrow out books to users for 2 weeks. This wil send an email to the user, after 2 weeks the user can extend their book once, or return it.",
+      ""
+    ]
+  },
+  {
+    "id": 6,
     "name": "Best of 2024",
     "tags": ["CSS", "Javascript", "HTML"],
     "banner_img": "bestof_1.png",

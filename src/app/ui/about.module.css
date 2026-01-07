@@ -24,6 +24,7 @@
     line-height: 80%;
     text-align: right;
     text-shadow: -1px 1px 3px rgba(0, 0, 0, 0.4);
+
     @media (max-width: 1279px) {
       width: fit-content;
     }
