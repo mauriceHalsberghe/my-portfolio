@@ -15,6 +15,21 @@
   },
   {
     "id": 2,
+    "name": "Laravel Webshop",
+    "tags": ["Laravel", "PHP", "FIlament"],
+    "banner_img": "webshop_1.png",
+    "images": ["webshop_2.png", "webshop_3.png", "webshop_4.png", "webshop_5.png", "webshop_1.png", "webshop_1.png"],
+    "github_link": "https://github.com/pgmgent-2526-datamanagement/webshop-mauriceHalsberghe",
+    "project_link": "https://webshop.mauriceh.be/",
+    "description": [
+      "To learn Laravel, I made a complete DVD webshop with a retro look. You can search and filter movies and directors, add items to you shopping cart, and checkout. As an admin you can manage all data in a Filament page.", 
+      "You can browse DVD's and directors. Filter by name, sort alphabetically or by price. You can see details of the movie like age-rating and duration, and when logged in you can even write reviews to movies.",
+      "Shopping cart is saved, so you can continue after reopening the site. Even when not logged in, it's saved in a Cookie. When going to checkout there is a Mollie page that imitates a real payment. ",
+      ""
+    ]
+  },
+  {
+    "id": 3,
     "name": "Aero Kanban",
     "tags": ["React", "Strapi", "Vite"],
     "banner_img": "kanban_1.png",
@@ -28,7 +43,7 @@
     ]
   },
   {
-    "id": 3,
+    "id": 4,
     "name": "First Portfolio",
     "tags": ["CraftCMS", "CSS", "ARIA"],
     "banner_img": "portfolio_1.png",
@@ -43,7 +58,7 @@
     ]
   },
   {
-    "id": 4,
+    "id": 5,
     "name": "Best of 2024",
     "tags": ["CSS", "Javascript", "HTML"],
     "banner_img": "bestof_1.png",

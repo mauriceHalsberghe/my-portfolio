@@ -6,7 +6,12 @@ import Footer from "../../components/Footer";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "../../ui/project.module.css"
-import delay from "delay";
+
+export async function generateStaticParams() {
+  return projects.map((project) => ({
+    id: project.id.toString(), 
+  }));
+}
 
 export default async function ProjectPage({ params }: { params: { id: string } }) {
   const { id } = await params;

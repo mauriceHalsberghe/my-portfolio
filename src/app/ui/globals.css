@@ -3,9 +3,9 @@
 :root {
     --main-red: hsl(355, 74%, 55%);
     --main-blue: hsl(215, 70%, 43%);
-    --main-yellow: hsl(55, 90%, 50%);
+    --main-yellow: hsl(55, 71%, 56%);
 
-    --main-yellow-tr: hsla(55, 90%, 50%, 0.35);
+    --main-yellow-tr: hsla(55, 71%, 56%, 0.35);
 }
 
 html {
