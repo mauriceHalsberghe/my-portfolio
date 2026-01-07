@@ -78,7 +78,7 @@
             border-radius: 1rem;
             box-shadow:
                 5px 0 10px rgba(0, 0, 0, 0.2),
-                inset 5px -5px 10px rgba(0, 0, 0, 0.2);
+                 inset 5px -5px 10px rgba(0, 0, 0, 0.2);
         }
 
         h3 {
@@ -154,15 +154,12 @@
     navigation: auto
 }
 
-
-.projects__card:nth-child(1) { animation-range: 0% 20%; }
-.projects__card:nth-child(2) { animation-range: 10% 30%; }
-.projects__card:nth-child(3) { animation-range: 20% 40%; }
-.projects__card:nth-child(4) { animation-range: -10% 10%; }
-.projects__card:nth-child(5) { animation-range: 0% 20%; }
-.projects__card:nth-child(6) { animation-range: 10% 40%; }
-.projects__card:nth-child(7) { animation-range: -10% 20%; }
-.projects__card:nth-child(8) { animation-range: 0% 30%; }
-.projects__card:nth-child(8) { animation-range: 10% 40%; }
-
-
+.projects__card:nth-child(1) { animation-range: 0% 30%; }
+.projects__card:nth-child(2) { animation-range: 10% 40%; }
+.projects__card:nth-child(3) { animation-range: 20% 50%; }
+.projects__card:nth-child(4) { animation-range: -10% 20%; }
+.projects__card:nth-child(5) { animation-range: 0% 30%; }
+.projects__card:nth-child(6) { animation-range: 10% 50%; }
+.projects__card:nth-child(7) { animation-range: -10% 30%; }
+.projects__card:nth-child(8) { animation-range: 0% 40%; }
+.projects__card:nth-child(8) { animation-range: 10% 50%; }
