@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "../ui/navbar.module.css";
 
+import DarkModeToggle from "./DarkModeToggle";
+
 export default function Navbar() {
   const sections = ["hero", "about", "projects", "contact"];
   const [activeSection, setActiveSection] = useState("start");
@@ -33,7 +35,11 @@ export default function Navbar() {
   }, [sections]);
 
   return (
+    <>
+    <DarkModeToggle />
+    
     <nav className={styles.navbar}>
+
       <div className={styles.navbar__list}>
         {sections.map((id) => (
           <Link
@@ -48,5 +54,6 @@ export default function Navbar() {
         ))}
       </div>
     </nav>
+    </>
   );
 }

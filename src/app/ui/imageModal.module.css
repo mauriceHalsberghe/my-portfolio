@@ -8,6 +8,7 @@
   justify-content: center;
   z-index: 9999;
 }
+
 .frame {
   max-width: fit-content;
   max-height: 90vh;
@@ -16,6 +17,7 @@
   justify-content: center;
   position: relative;
 }
+
 .fullImage {
   max-width: 100%;
   max-height: 90vh;
@@ -53,7 +55,7 @@
   border-radius: 4rem;
   padding: 0.5rem;
   background: rgba(0, 0, 0, 0.4);
-  color: white;
+  color: var(--background);
   border: none;
   font-size: 4rem;
   cursor: pointer;

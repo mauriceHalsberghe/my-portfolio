@@ -1,27 +1,35 @@
 "use client";
-
-import { useState } from "react";
-import Image from "next/image";
+import { ComponentType, useState } from "react";
 import styles from "../ui/about.module.css";
+
+import { JavaScriptIcon } from "../components/icons/JavaScriptIcon";
+import { PHPIcon } from "../components/icons/PHPIcon";
+import { TypeScriptIcon } from "../components/icons/TypeScriptIcon";
+import { ReactIcon } from "../components/icons/ReactIcon";
+import { PythonIcon } from "../components/icons/PythonIcon";
+import { HTMLIcon } from "../components/icons/HTMLIcon";
+import { CSSIcon } from "../components/icons/CSSIcon";
+import { GitIcon } from "../components/icons/GitIcon";
+
 
 interface Tech {
   name: string;
-  src: string;
+  Icon: ComponentType<{ className?: string }>;
   info: string;
   rating: number;
 }
 
 export default function About() {
   const techStack: Tech[] = [
-    { name: "JavaScript", src: "/svg/javascript.svg", info: "A versatile language used for interactive web development.", rating: 5, },
-    { name: "PHP", src: "/svg/php.svg", info: "A server-side scripting language for building dynamic websites.", rating: 4 },
-    { name: "TypeScript", src: "/svg/typescript.svg", info: "A superset of JavaScript that adds static typing and better tooling.", rating: 4, },
-    { name: "React", src: "/svg/react.svg", info: "A library for building fast, modular, and reusable user interfaces.", rating: 4, },
-    { name: "Python", src: "/svg/python.svg", info: "A popular high-level language known for simplicity and AI/ML support.", rating: 3, },
-    { name: "HTML", src: "/svg/html.svg", info: "The markup language that structures content on the web.", rating: 5, },
-    { name: "CSS", src: "/svg/css.svg", info: "Used to style and layout web pages with colors, fonts, and animations.", rating: 4, },
-    { name: "Git", src: "/svg/git.svg", info: "A version control system for tracking changes in code collaboratively.", rating: 4, },
-  ];
+    { name: "JavaScript", Icon: JavaScriptIcon, info: "A versatile language used for interactive web development.", rating: 5, },
+    { name: "PHP", Icon: PHPIcon, info: "A server-side scripting language for building dynamic websites.", rating: 4 },
+    { name: "TypeScript", Icon: TypeScriptIcon, info: "A superset of JavaScript that adds static typing and better tooling.", rating: 4, },
+    { name: "React", Icon: ReactIcon, info: "A library for building fast, modular, and reusable user interfaces.", rating: 4, },
+    { name: "Python", Icon: PythonIcon, info: "A popular high-level language known for simplicity and AI/ML support.", rating: 3, },
+    { name: "HTML", Icon: HTMLIcon, info: "The markup language that structures content on the web.", rating: 5, },
+    { name: "CSS", Icon: CSSIcon, info: "Used to style and layout web pages with colors, fonts, and animations.", rating: 4, },
+    { name: "Git", Icon: GitIcon, info: "A version control system for tracking changes in code collaboratively.", rating: 4, },
+  ];  
 
   const [selectedTech, setSelectedTech] = useState<Tech | null>(null);
 
@@ -48,13 +56,7 @@ export default function About() {
               }`}
               onClick={() => handleTechClick(tech)}
             >
-              <Image
-                alt={tech.name}
-                className={styles.about__image}
-                width={100}
-                height={100}
-                src={tech.src}
-              />
+              <tech.Icon className={styles.about__image} />
             </div>
           ))}
         </div>
