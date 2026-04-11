@@ -13,7 +13,9 @@ export default function Projects() {
       </p>
 
       <div className={styles.projects__cards}>
-        {projects.map((project) => (
+        {projects
+          .sort((a, b) => a.order - b.order)
+          .map((project) => (
           <Link key={project.id} href={`/projects/${project.id}`} className={styles.projects__card}>
             <Image className={styles.projects__image} src={"/images/" + project.banner_img} width={450} height={250} alt={project.name} />
             <h3 className={styles.projects__name}>{project.name}</h3>

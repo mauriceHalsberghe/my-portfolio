@@ -1,6 +1,6 @@
 import type { Metadata } from "next"; 
 import { Rubik_Mono_One } from "next/font/google"; 
-import "./ui/globals.css"; 
+import "./ui/globals.css";
  
 const rubikMonoOne = Rubik_Mono_One({ 
   subsets: ["latin"], 
