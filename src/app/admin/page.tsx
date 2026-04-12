@@ -114,8 +114,7 @@ export default function AdminPage() {
   }
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh", fontFamily: "sans-serif" }}>
-      {/* Sidebar */}
+    <div>
       <aside style={{ width: 260, borderRight: "1px solid #ddd", padding: "1rem", overflowY: "auto" }}>
         <h2 style={{ marginTop: 0 }}>Admin panel</h2>
         <div style={{ display: "flex", gap: "0.5rem", marginBottom: "2rem" }}>

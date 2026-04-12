@@ -2,6 +2,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+import AdminStyling from "@/app/ui/admin.module.css";
+import Link from "next/link";
+
 export default function AdminLogin() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -22,22 +25,21 @@ export default function AdminLogin() {
   }
 
   return (
-    <main style={{ display: "grid", placeItems: "center", minHeight: "100vh" }}>
-      <div style={{ display: "flex", flexDirection: "column", gap: "1rem", width: 300 }}>
-        <h1>Admin Login</h1>
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleLogin()}
-          style={{ padding: "0.5rem", fontSize: "1rem" }}
-        />
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <button onClick={handleLogin} style={{ padding: "0.5rem", cursor: "pointer" }}>
-          Login
-        </button>
-      </div>
+    <main className={AdminStyling.login}>
+      <Link className={AdminStyling.back} href={'/'}>Back</Link>
+      <h1 className={AdminStyling.title}>Admin Login</h1>
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        className={AdminStyling.input}
+        onChange={(e) => setPassword(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && handleLogin()}
+      />
+      <button onClick={handleLogin} className={AdminStyling.button}>
+        Login
+      </button>
+      {error && <p className={AdminStyling.error}>{error}</p>}
     </main>
   );
 }
