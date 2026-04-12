@@ -11,6 +11,19 @@ export default function Navbar() {
   const sections = ["hero", "about", "projects", "contact"];
   const [activeSection, setActiveSection] = useState("start");
 
+  const [easterEgg, setEasterEgg] = useState(false);
+
+
+  useEffect(() => {
+    function handleEasterEgg() {
+      setEasterEgg(true);
+      setTimeout(() => setEasterEgg(false), 3000);
+    }
+
+    window.addEventListener("easterEgg", handleEasterEgg);
+    return () => window.removeEventListener("easterEgg", handleEasterEgg);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + window.innerHeight / 2;
@@ -45,17 +58,25 @@ export default function Navbar() {
     <nav className={styles.navbar}>
 
       <div className={styles.navbar__list}>
-        {sections.map((id) => (
-          <Link
-            key={id}
-            href={`/#${id}`}
-            className={`${styles.navbar__link} ${
-              activeSection === id ? styles.active : ""
-            }`}
-          >
-            {id.charAt(0).toUpperCase() + id.slice(1)}
-          </Link>
-        ))}
+
+        {easterEgg ? (
+          <Link className={styles.navbar__link} href={'/admin'}>Enter the backrooms</Link>
+        ) : (
+          <>
+            {sections.map((id) => (
+              <Link
+                key={id}
+                href={`/#${id}`}
+                className={`${styles.navbar__link} ${
+                  activeSection === id ? styles.active : ""
+                }`}
+              >
+                {id.charAt(0).toUpperCase() + id.slice(1)}
+              </Link>
+            ))}
+          </>
+        )}
+
       </div>
     </nav>
     </>

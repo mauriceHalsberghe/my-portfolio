@@ -1,15 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import{ MoonIcon } from "./icons/MoonIcon";
 import{ SunIcon } from "./icons/SunIcon";
 
-import styles from '../ui/toggle.module.css';
-
-
 export default function DarkModeToggle() {
   const [isDark, setIsDark] = useState(false);
+  const clickTimes = useRef<number[]>([]);
 
   useEffect(() => {
     const stored = localStorage.getItem("theme");
@@ -32,17 +30,25 @@ export default function DarkModeToggle() {
     }
   }, []);
 
-  const toggleTheme = () => {
+  function handleClick() {
     const nextIsDark = !isDark;
     setIsDark(nextIsDark);
 
     document.documentElement.classList.toggle("dark", nextIsDark);
     localStorage.setItem("theme", nextIsDark ? "dark" : "light");
-  };
+
+    const now = Date.now();
+    clickTimes.current = [...clickTimes.current, now].filter(t => now - t < 1000);
+
+    if (clickTimes.current.length >= 5) {
+      window.dispatchEvent(new CustomEvent("easterEgg"));
+      clickTimes.current = [];
+    }
+  }
 
   return (
     <button
-      onClick={toggleTheme}
+      onClick={handleClick}
       aria-label="Toggle dark mode"
       style={{
         position: "fixed",
