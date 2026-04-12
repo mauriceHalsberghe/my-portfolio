@@ -50,7 +50,7 @@ export default function Navbar() {
 
   return (
     <>
-    <Link href={'https://github.com/mauriceHalsberghe'} target="_blank">
+    <Link href={'https://github.com/mauriceHalsberghe'} target="_blank" className={styles.gitHubIcon}>
       <GitHubIcon />
     </Link>
 
@@ -60,7 +60,7 @@ export default function Navbar() {
       <div className={styles.navbar__list}>
 
         {easterEgg ? (
-          <Link className={styles.navbar__link} href={'/admin'}>Enter the backrooms</Link>
+          <Link className={styles.navbar__link} href={'/admin'}>Exit the matrix</Link>
         ) : (
           <>
             {sections.map((id) => (

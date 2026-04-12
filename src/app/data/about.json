@@ -1,13 +1,49 @@
 {
-  "intro": "I'm a Programming student at Artevelde University of Applied Sciences in Ghent. My main passion is back-end development, but I'm also interested in full-stack work. Below, you can find all the technologies I'm familiar with.",
   "tech": [
-    { "name": "JavaScript", "info": "A versatile language used for interactive web development.", "rating": 5 },
-    { "name": "PHP", "info": "A server-side scripting language for building dynamic websites.", "rating": 4 },
-    { "name": "TypeScript", "info": "A superset of JavaScript that adds static typing and better tooling.", "rating": 4 },
-    { "name": "React", "info": "A library for building fast, modular, and reusable user interfaces.", "rating": 4 },
-    { "name": "Python", "info": "A popular high-level language known for simplicity and AI/ML support.", "rating": 3 },
-    { "name": "HTML", "info": "The markup language that structures content on the web.", "rating": 5 },
-    { "name": "CSS", "info": "Used to style and layout web pages with colors, fonts, and animations.", "rating": 4 },
-    { "name": "Git", "info": "A version control system for tracking changes in code collaboratively.", "rating": 4 }
+    {
+      "name": "JavaScript",
+      "info": "A versatile language used for interactive web development.",
+      "rating": 5
+    },
+    {
+      "name": "PHP",
+      "info": "A server-side scripting language for building dynamic websites.",
+      "rating": 4
+    },
+    {
+      "name": "TypeScript",
+      "info": "A superset of JavaScript that adds static typing and better tooling.",
+      "rating": 4
+    },
+    {
+      "name": "React",
+      "info": "A library for building fast, modular, and reusable user interfaces.",
+      "rating": 4
+    },
+    {
+      "name": "Python",
+      "info": "A popular high-level language known for simplicity and AI/ML support.",
+      "rating": 3
+    },
+    {
+      "name": "HTML",
+      "info": "The markup language that structures content on the web.",
+      "rating": 5
+    },
+    {
+      "name": "CSS",
+      "info": "Used to style and layout web pages with colors, fonts, and animations.",
+      "rating": 4
+    },
+    {
+      "name": "Git",
+      "info": "A version control system for tracking changes in code collaboratively.",
+      "rating": 4
+    },
+    {
+      "name": "C#",
+      "info": "A general-purpose high-level programming language",
+      "rating": 3
+    }
   ]
 }

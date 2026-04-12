@@ -5,6 +5,8 @@ import { useEffect, useState, useRef } from "react";
 import{ MoonIcon } from "./icons/MoonIcon";
 import{ SunIcon } from "./icons/SunIcon";
 
+import styles from "../ui/navbar.module.css";
+
 export default function DarkModeToggle() {
   const [isDark, setIsDark] = useState(false);
   const clickTimes = useRef<number[]>([]);
@@ -50,12 +52,9 @@ export default function DarkModeToggle() {
     <button
       onClick={handleClick}
       aria-label="Toggle dark mode"
+      className={styles.darkToggle}
       style={{
-        position: "fixed",
-        right: "2rem",
-        top: '3.4rem',
-        zIndex: 1000,
-        cursor: 'pointer',
+
       }}
 
     >

@@ -1,12 +1,8 @@
+import styles from "../ui/navbar.module.css";
+
 export function GitHubIcon({ className }: { className?: string }) {
   return (
-    <svg width="24" height="24" viewBox="0 0 20 20" className={className} aria-hidden       style={{
-        position: "fixed",
-        right: "4.5rem",
-        top: '3.4rem',
-        zIndex: 1000,
-        cursor: 'pointer',
-      }}>
+    <svg width="24" height="24" viewBox="0 0 20 20" className={className} aria-hidden>
     
 
         <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">

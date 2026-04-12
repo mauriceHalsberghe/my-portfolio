@@ -1,5 +1,5 @@
 "use client";
-import { ComponentType, useState } from "react";
+import { ComponentType, useEffect, useState } from "react";
 import styles from "../ui/about.module.css";
 
 import { JavaScriptIcon } from "../components/icons/JavaScriptIcon";
@@ -10,7 +10,9 @@ import { PythonIcon } from "../components/icons/PythonIcon";
 import { HTMLIcon } from "../components/icons/HTMLIcon";
 import { CSSIcon } from "../components/icons/CSSIcon";
 import { GitIcon } from "../components/icons/GitIcon";
+import { CSharpIcon } from "../components/icons/CSharpIcon";
 
+import { TechIcon } from "../components/icons/TechIcon";
 
 interface Tech {
   name: string;
@@ -19,23 +21,44 @@ interface Tech {
   rating: number;
 }
 
-export default function About() {
-  const techStack: Tech[] = [
-    { name: "JavaScript", Icon: JavaScriptIcon, info: "A versatile language used for interactive web development.", rating: 5, },
-    { name: "PHP", Icon: PHPIcon, info: "A server-side scripting language for building dynamic websites.", rating: 4 },
-    { name: "TypeScript", Icon: TypeScriptIcon, info: "A superset of JavaScript that adds static typing and better tooling.", rating: 4, },
-    { name: "React", Icon: ReactIcon, info: "A library for building fast, modular, and reusable user interfaces.", rating: 4, },
-    { name: "Python", Icon: PythonIcon, info: "A popular high-level language known for simplicity and AI/ML support.", rating: 3, },
-    { name: "HTML", Icon: HTMLIcon, info: "The markup language that structures content on the web.", rating: 5, },
-    { name: "CSS", Icon: CSSIcon, info: "Used to style and layout web pages with colors, fonts, and animations.", rating: 4, },
-    { name: "Git", Icon: GitIcon, info: "A version control system for tracking changes in code collaboratively.", rating: 4, },
-  ];  
+type TechEntry = {
+  name: string;
+  info: string;
+  rating: number;
+};
 
+const iconMap: Record<string, ComponentType<{ className?: string }>> = {
+  JavaScript: JavaScriptIcon,
+  PHP: PHPIcon,
+  TypeScript: TypeScriptIcon,
+  React: ReactIcon,
+  Python: PythonIcon,
+  HTML: HTMLIcon,
+  CSS: CSSIcon,
+  Git: GitIcon,
+  'C#': CSharpIcon,
+};
+
+export default function About() {
+  const [intro, setIntro] = useState("");
+  const [techStack, setTechStack] = useState<Tech[]>([]);
   const [selectedTech, setSelectedTech] = useState<Tech | null>(null);
+
+  useEffect(() => {
+    fetch("/api/about")
+      .then((r) => r.json())
+      .then((data: { intro: string; tech: TechEntry[] }) => {
+        setIntro(data.intro);
+        setTechStack(
+          data.tech.map((t) => ({ ...t, Icon: iconMap[t.name] ?? TechIcon }))
+        );
+      });
+  }, []);
 
   const handleTechClick = (tech: Tech) => {
     setSelectedTech(selectedTech?.name === tech.name ? null : tech);
   };
+
 
   return (
     <section className={styles.about} id="about">
@@ -67,7 +90,7 @@ export default function About() {
           <div className={styles.about__rating}>
             {selectedTech &&
               Array.from({ length: 5 }).map((_, i) => (
-                <div key={i} className={ i < selectedTech.rating ? styles.starFilled : styles.starEmpty }></div>
+                <div key={i} className={i < selectedTech.rating ? styles.starFilled : styles.starEmpty} />
               ))}
           </div>
         </div>

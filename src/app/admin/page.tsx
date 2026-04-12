@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 
+import AdminStyling from "@/app/ui/admin.module.css";
+
 type Project = {
   id: number;
   order: number;
@@ -15,6 +17,8 @@ type Project = {
 
 type ProjectDraft = Omit<Project, "id"> & { id?: number };
 
+type Tech = { name: string; info: string; rating: number };
+
 const emptyProject: ProjectDraft = {
   name: "",
   order: 0,
@@ -26,15 +30,18 @@ const emptyProject: ProjectDraft = {
   description: ["", "", "", ""],
 };
 
+const emptyTech: Tech = { name: "", info: "", rating: 3 };
+
 export default function AdminPage() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [selected, setSelected] = useState<ProjectDraft | null>(null);
   const [isNew, setIsNew] = useState(false);
   const [status, setStatus] = useState("");
 
-  const [tab, setTab] = useState<"projects" | "about">("projects");
-  const [aboutIntro, setAboutIntro] = useState("");
-  const [aboutTech, setAboutTech] = useState<{ name: string; info: string; rating: number }[]>([]);
+  const [tab, setTab] = useState<"projects" | "about">("about");
+  const [aboutTech, setAboutTech] = useState<Tech[]>([]);
+  const [selectedTech, setSelectedTech] = useState<Tech & { index: number } | null>(null);
+  const [isNewTech, setIsNewTech] = useState(false);
   const [aboutStatus, setAboutStatus] = useState("");
 
   useEffect(() => {
@@ -44,8 +51,7 @@ export default function AdminPage() {
 
     fetch("/api/about")
       .then((r) => r.json())
-      .then((data: { intro: string; tech: { name: string; info: string; rating: number }[] }) => {
-        setAboutIntro(data.intro);
+      .then((data: { tech: Tech[] }) => {
         setAboutTech(data.tech);
       });
   }, []);
@@ -98,225 +104,266 @@ export default function AdminPage() {
     setStatus("");
   }
 
-  async function handleAboutSave() {
+  function handleSelectTech(tech: Tech, index: number) {
+    setSelectedTech({ ...tech, index });
+    setIsNewTech(false);
+    setAboutStatus("");
+  }
+
+  function handleNewTech() {
+    setSelectedTech({ ...emptyTech, index: -1 });
+    setIsNewTech(true);
+    setAboutStatus("");
+  }
+
+  function updateSelectedTech(field: keyof Tech, value: string | number) {
+    setSelectedTech((prev) => prev ? { ...prev, [field]: value } : prev);
+  }
+
+  async function handleTechSave() {
+    if (!selectedTech) return;
+    let updatedTech: Tech[];
+    if (isNewTech) {
+      updatedTech = [...aboutTech, { name: selectedTech.name, info: selectedTech.info, rating: selectedTech.rating }];
+    } else {
+      updatedTech = aboutTech.map((t, i) =>
+        i === selectedTech.index ? { name: selectedTech.name, info: selectedTech.info, rating: selectedTech.rating } : t
+      );
+    }
+
     await fetch("/api/about", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ intro: aboutIntro, tech: aboutTech }),
+      body: JSON.stringify({ tech: updatedTech }),
     });
+
+    setAboutTech(updatedTech);
+    if (isNewTech) {
+      setSelectedTech({ name: selectedTech.name, info: selectedTech.info, rating: selectedTech.rating, index: updatedTech.length - 1 });
+      setIsNewTech(false);
+    }
     setAboutStatus("✅ Saved!");
   }
 
-  function updateTech(index: number, field: "info" | "rating", value: string | number) {
-    setAboutTech((prev) =>
-      prev.map((t, i) => (i === index ? { ...t, [field]: value } : t))
-    );
+  async function handleTechDelete() {
+    if (!selectedTech || isNewTech) return;
+    if (!confirm("Delete this tech?")) return;
+    const updatedTech = aboutTech.filter((_, i) => i !== selectedTech.index);
+
+    await fetch("/api/about", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ tech: updatedTech }),
+    });
+
+    setAboutTech(updatedTech);
+    setSelectedTech(null);
+    setAboutStatus("");
   }
 
   return (
-    <div>
-      <aside style={{ width: 260, borderRight: "1px solid #ddd", padding: "1rem", overflowY: "auto" }}>
-        <h2 style={{ marginTop: 0 }}>Admin panel</h2>
-        <div style={{ display: "flex", gap: "0.5rem", marginBottom: "2rem" }}>
-          <button onClick={() => setTab("projects")} style={btnStyle(tab === "projects" ? "#0070f3" : "#888")}>
+    <div className={AdminStyling.page}>
+
+      <aside className={AdminStyling.aside}>
+        <h2 className={AdminStyling.title}>Admin</h2>
+
+        <div className={AdminStyling.tabs}>
+          <button className={`${AdminStyling.tab} ${tab === "about" && AdminStyling.tabCurrent}`} onClick={() => setTab("about")}>
+            Skills
+          </button>
+          <button className={`${AdminStyling.tab} ${tab === "projects" && AdminStyling.tabCurrent}`} onClick={() => setTab("projects")}>
             Projects
           </button>
-          <button onClick={() => setTab("about")} style={btnStyle(tab === "about" ? "#0070f3" : "#888")}>
-            About
-          </button>
         </div>
-        {
-          tab === "projects" && (
-            <>
-              <button onClick={handleNew} style={btnStyle("#0070f3")}>+ New Project</button>
-              <ul style={{ listStyle: "none", padding: 0, marginTop: "1rem" }}>
-                {projects.map((p) => (
-                  <li
-                    key={p.id}
-                    onClick={() => handleSelect(p)}
-                    style={{
-                      padding: "0.5rem 0.75rem",
-                      marginBottom: "0.25rem",
-                      borderRadius: 6,
-                      cursor: "pointer",
-                      background: selected?.id === p.id ? "#e8f0fe" : "transparent",
-                      fontWeight: selected?.id === p.id ? 600 : 400,
-                    }}
-                  >
-                    {p.name || "Untitled"}
-                  </li>
-                ))}
-              </ul>
-            </>
-          )
-        }
+
+        {tab === "projects" && (
+          <>
+            <button className={AdminStyling.button} onClick={handleNew}>+ New Project</button>
+            <ul className={AdminStyling.list}>
+              {projects.map((p) => (
+                <li
+                  key={p.id}
+                  onClick={() => handleSelect(p)}
+                  className={`${AdminStyling.listItem} ${selected?.id === p.id && AdminStyling.listItemCurrent}`}
+                >
+                  {p.name || "Untitled"}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+
+        {tab === "about" && (
+          <>
+            <button className={AdminStyling.button} onClick={handleNewTech}>+ New Skill</button>
+            <ul className={AdminStyling.list}>
+              {aboutTech.map((tech, i) => (
+                <li
+                  key={tech.name}
+                  onClick={() => handleSelectTech(tech, i)}
+                  className={`${AdminStyling.listItem} ${selectedTech?.index === i && AdminStyling.listItemCurrent}`}
+                >
+                  {tech.name || "Untitled"}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </aside>
 
-      {/* Editor */}
-<main style={{ flex: 1, padding: "2rem", maxWidth: 700 }}>
+      <main className={AdminStyling.main}>
 
-  {/* Projects tab — your existing editor JSX goes here, unchanged */}
-  {tab === "projects" && (
-    <>
-      {!selected ? (
-        <p style={{ color: "#888" }}>Select a project or create a new one.</p>
-      ) : (
-        <>
-          <h2 style={{ marginTop: 0 }}>{isNew ? "New Project" : "Edit Project"}</h2>
+        {tab === "projects" && (
+          <>
+            {!selected ? (
+              <p className={AdminStyling.empty}>Select a project or create a new one.</p>
+            ) : (
+              <>
+                <h2 className={AdminStyling.subtitle}>{isNew ? "New Project" : "Edit Project"}</h2>
 
-            <Field label="Name">
-              <input
-                value={selected.name}
-                onChange={(e) => update("name", e.target.value)}
-                style={inputStyle}
-              />
-            </Field>
+                <div className={AdminStyling.content}>
+                  <div>
 
-            <Field label="Order">
-              <input
-                type="number"
-                value={selected.order}
-                onChange={(e) => update("order", parseInt(e.target.value))}
-                style={inputStyle}
-              />
-            </Field>
+                    <Field label="Name">
+                      <input 
+                        className={AdminStyling.input} 
+                        value={selected.name} 
+                        onChange={(e) => update("name", e.target.value)} 
+                        placeholder="Project name" />
+                    </Field>
 
-            <Field label="Tags (comma separated)">
-              <input
-                value={selected.tags.join(", ")}
-                onChange={(e) => update("tags", e.target.value.split(",").map((t) => t.trim()))}
-                style={inputStyle}
-              />
-            </Field>
+                    <Field label="Order">
+                      <input 
+                        className={AdminStyling.input} 
+                        type="number" value={selected.order} 
+                        onChange={(e) => update("order", parseInt(e.target.value))} />
+                    </Field>
 
-            <Field label="Banner image filename">
-              <input
-                value={selected.banner_img}
-                onChange={(e) => update("banner_img", e.target.value)}
-                style={inputStyle}
-              />
-            </Field>
+                    <Field label="Tags (comma separated)">
+                      <input
+                        className={AdminStyling.input}
+                        value={selected.tags.join(", ")}
+                        onChange={(e) => update("tags", e.target.value.split(",").map((t) => t.trim()))} />
+                    </Field>
 
-            <Field label="Extra images (comma separated filenames)">
-              <input
-                value={selected.images.join(", ")}
-                onChange={(e) => update("images", e.target.value.split(",").map((s) => s.trim()))}
-                style={inputStyle}
-              />
-            </Field>
+                    <Field label="Banner image filename">
+                      <input 
+                        className={AdminStyling.input} 
+                        value={selected.banner_img} 
+                        onChange={(e) => update("banner_img", e.target.value)} />
+                    </Field>
 
-            <Field label="GitHub link  (optional)">
-              <input
-                value={selected.github_link}
-                onChange={(e) => update("github_link", e.target.value)}
-                style={inputStyle}
-              />
-            </Field>
+                    <Field label="Extra images (comma separated filenames)">
+                      <input
+                        className={AdminStyling.input}
+                        value={selected.images.join(", ")}
+                        onChange={(e) => update("images", e.target.value.split(",").map((s) => s.trim()))}
+                      />
+                    </Field>
 
-            <Field label="Project link (optional)">
-              <input
-                value={selected.project_link ?? ""}
-                onChange={(e) => update("project_link", e.target.value)}
-                style={inputStyle}
-              />
-            </Field>
+                    <Field label="GitHub link (optional)">
+                      <input 
+                        className={AdminStyling.input} 
+                        value={selected.github_link} 
+                        onChange={(e) => update("github_link", e.target.value)} />
+                    </Field>
 
-            <Field label="Description paragraphs">
-              {selected.description.map((desc, i) => (
-                <textarea
-                  key={i}
-                  value={desc}
-                  onChange={(e) => {
-                    const updated = [...selected.description];
-                    updated[i] = e.target.value;
-                    update("description", updated);
-                  }}
-                  rows={3}
-                  placeholder={`Paragraph ${i + 1}`}
-                  style={{ ...inputStyle, display: "block", marginBottom: "0.5rem", resize: "vertical" }}
-                />
-              ))}
-            </Field>
+                    <Field label="Project link (optional)">
+                      <input 
+                        className={AdminStyling.input} 
+                        value={selected.project_link ?? ""} 
+                        onChange={(e) => update("project_link", e.target.value)} />
+                    </Field>
+                  </div>
 
-                  <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
-        <button onClick={handleSave} style={btnStyle("#0070f3")}>Save</button>
-        {aboutStatus && <span style={{ color: "green" }}>{aboutStatus}</span>}
-      </div>
-        </>
-      )}
-    </>
-  )}
 
-  {/* About tab */}
-  {tab === "about" && (
-    <>
-      <h2 style={{ marginTop: 0 }}>About Section</h2>
+                  <div className={AdminStyling.desc}>
+                    <label className={AdminStyling.label}>Description paragraphs</label>
+                    {selected.description.map((desc, i) => (
+                      <textarea
+                        className={AdminStyling.textarea}
+                        key={i}
+                        value={desc}
+                        onChange={(e) => {
+                          const updated = [...selected.description];
+                          updated[i] = e.target.value;
+                          update("description", updated);
+                        }}
+                        rows={3}
+                        placeholder={`Paragraph ${i + 1}`}
+                      />
+                    ))}
+                  </div>
+                </div>
 
-      <Field label="Intro paragraph">
-        <textarea
-          value={aboutIntro}
-          onChange={(e) => setAboutIntro(e.target.value)}
-          rows={4}
-          style={{ ...inputStyle, resize: "vertical" }}
-        />
-      </Field>
 
-      <h3>Tech stack</h3>
-      {aboutTech.map((tech, i) => (
-        <div key={tech.name} style={{ marginBottom: "1.25rem", padding: "1rem", border: "1px solid #eee", borderRadius: 8 }}>
-          <p style={{ margin: "0 0 0.5rem", fontWeight: 600 }}>{tech.name}</p>
+                <div className={AdminStyling.buttons}>
+                  <button onClick={handleSave} className={AdminStyling.button}>Save</button>
+                  <button onClick={() => selected.id !== undefined && handleDelete(selected.id)} className={AdminStyling.delButton}>Delete</button>
+                  {status && <span>{status}</span>}
+                </div>
+              </>
+            )}
+          </>
+        )}
 
-          <Field label="Info">
-            <input
-              value={tech.info}
-              onChange={(e) => updateTech(i, "info", e.target.value)}
-              style={inputStyle}
-            />
-          </Field>
+        {tab === "about" && (
+          <>
+            {!selectedTech ? (
+              <p className={AdminStyling.empty}>Select a skill or add a new one.</p>
+            ) : (
+              <>
+                <h2 className={AdminStyling.subtitle}>{isNewTech ? "New Skill" : "Edit Skill"}</h2>
 
-          <Field label="Rating (1–5)">
-            <input
-              type="number"
-              min={1}
-              max={5}
-              value={tech.rating}
-              onChange={(e) => updateTech(i, "rating", parseInt(e.target.value))}
-              style={{ ...inputStyle, width: 80 }}
-            />
-          </Field>
-        </div>
-      ))}
+                <Field label="Name">
+                  <input 
+                    className={AdminStyling.input} 
+                    value={selectedTech.name} 
+                    onChange={(e) => updateSelectedTech("name", e.target.value)} />
+                </Field>
 
-      <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
-        <button onClick={handleAboutSave} style={btnStyle("#0070f3")}>Save</button>
-        {aboutStatus && <span style={{ color: "green" }}>{aboutStatus}</span>}
-      </div>
-    </>
-  )}
-</main>
+                <Field label="Info">
+                  <input 
+                    className={AdminStyling.input} 
+                    value={selectedTech.info} 
+                    onChange={(e) => updateSelectedTech("info", e.target.value)} />
+                </Field>
+
+                <Field label="Rating (1–5)">
+                  <input
+                    className={AdminStyling.input}
+                    type="number"
+                    min={1}
+                    max={5}
+                    value={selectedTech.rating}
+                    onChange={(e) => updateSelectedTech("rating", parseInt(e.target.value))}
+                  />
+                </Field>
+
+                <div className={AdminStyling.buttons}>
+                  <button onClick={handleTechSave} className={AdminStyling.button}>Save</button>
+                  {!isNewTech && (
+                    <button onClick={handleTechDelete} className={AdminStyling.delButton}>Delete</button>
+                  )}
+                  {aboutStatus && <span>{aboutStatus}</span>}
+                </div>
+              </>
+            )}
+          </>
+        )}
+      </main>
     </div>
   );
 }
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div style={{ marginBottom: "1rem" }}>
-      <label style={{ display: "block", fontWeight: 600, marginBottom: "0.25rem", fontSize: "0.9rem" }}>
-        {label}
-      </label>
+    <div className={AdminStyling.field}>
+      <label className={AdminStyling.label}>{label}</label>
       {children}
     </div>
   );
 }
-
-const inputStyle: React.CSSProperties = {
-  width: "100%",
-  padding: "0.4rem 0.6rem",
-  fontSize: "0.95rem",
-  border: "1px solid #ccc",
-  borderRadius: 6,
-  boxSizing: "border-box",
-};
 
 function btnStyle(bg: string): React.CSSProperties {
   return {

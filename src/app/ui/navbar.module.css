@@ -8,7 +8,8 @@
     color: var(--text);
     font-size: 1.2rem;
     padding: 1.2rem 5rem;
-    width: fit-content;
+    width: max-content;
+    min-width: 390px;
     position: fixed;
     z-index: 999;
     border-radius: 2rem;
@@ -18,6 +19,7 @@
 
     @media (max-width: 768px) {
         padding: 1.2rem 3.5rem;
+        margin-top: 3.5rem;
     }
 
     @media (max-width: 480px) {
@@ -28,6 +30,7 @@
     .navbar__list {
         display: flex;
         gap: 2rem;
+        justify-content: center;
 
         @media (max-width: 480px) {
             gap: 1rem;
@@ -36,6 +39,7 @@
         .navbar__link {
             font-weight: 500;
             transition: color .3s;
+            text-align: center;
             &:hover {
                 color: var(--main-red);
             }
@@ -45,4 +49,26 @@
 
 .navbar__link.active {
   color: var(--main-blue)
+}
+
+.darkToggle {
+    position: fixed;
+    right: 2rem;
+    top: 3.4rem;
+    z-index: 1000;
+    cursor: pointer;
+    @media (max-width: 768px) {
+        top: 1rem;
+    }
+}
+
+.gitHubIcon {
+    position: fixed;
+    right: 4.5rem;
+    top: 3.4rem;
+    z-index: 1000;
+    cursor: pointer;
+    @media (max-width: 768px) {
+        top: 1rem;
+    }
 }
