@@ -3,15 +3,30 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./navbar.module.css";
-import { GitHubIcon } from "../../icons/GitHubIcon";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import ModeToggle from "../mode-toggle/ModeToggle";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+
+const sections = ["hero", "about", "projects", "contact"];
 
 export default function Navbar() {
-  const sections = ["hero", "about", "projects", "contact"];
   const [activeSection, setActiveSection] = useState("start");
-
   const [easterEgg, setEasterEgg] = useState(false);
+  const [width, setWidth] = useState(0);
+  const [showNav, setShowNav] = useState(false);
 
+  useEffect(() => {
+    const update = () => {
+      setWidth(window.innerWidth);
+      setShowNav(window.innerWidth > 480);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   useEffect(() => {
     function handleEasterEgg() {
@@ -47,37 +62,61 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [sections]);
 
+  function toggleNav() {
+    setShowNav((prev) => !prev);
+  }
+
   return (
-    <>
-    <Link href={'https://github.com/mauriceHalsberghe'} target="_blank" className={styles.gitHubIcon}>
-      <GitHubIcon />
-    </Link>
+    <div>
 
-    <ModeToggle />
-    <nav className={styles.navbar}>
+      <nav className={styles.buttons} >
+        <Link href={'https://github.com/mauriceHalsberghe'} target="_blank" className={styles.gitHubIcon}>
+          <FontAwesomeIcon icon={faGithub} />
+        </Link>
 
-      <div className={styles.navbar__list}>
+        <ModeToggle />
 
-        {easterEgg ? (
-          <Link className={styles.navbar__link} href={'/admin'}>Exit the matrix</Link>
-        ) : (
-          <>
-            {sections.map((id) => (
-              <Link
-                key={id}
-                href={`/#${id}`}
-                className={`${styles.navbar__link} ${
-                  activeSection === id ? styles.active : ""
-                }`}
-              >
-                {id.charAt(0).toUpperCase() + id.slice(1)}
-              </Link>
-            ))}
-          </>
+        { width < 481 && (
+          <button type="button" style={{cursor: "pointer"}} onClick={toggleNav}>
+            
+            { showNav ? 
+              <FontAwesomeIcon icon={faXmark} /> :
+              <FontAwesomeIcon icon={faBars} />
+            }            
+          </button>
         )}
+      </nav>
 
-      </div>
-    </nav>
-    </>
+
+
+    { showNav && (
+      <nav className={styles.navbar}>
+
+        <div className={styles.navbar__list}>
+
+          {easterEgg ? (
+            <Link className={styles.navbar__link} href={'/admin'}>Exit the matrix</Link>
+          ) : (
+            <>
+              {sections.map((id) => (
+                <Link
+                  key={id}
+                  href={`/#${id}`}
+                  onClick={() => setShowNav(false)}
+                  className={`${styles.navbar__link} ${
+                    activeSection === id ? styles.active : ""
+                  }`}
+                >
+                  {id.charAt(0).toUpperCase() + id.slice(1)}
+                </Link>
+              ))}
+            </>
+          )}
+
+        </div>
+      </nav>
+    )}
+
+    </div>
   );
 }

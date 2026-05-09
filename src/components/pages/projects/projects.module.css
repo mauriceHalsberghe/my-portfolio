@@ -35,11 +35,11 @@
     }
 
     .projects__cards {
-        margin: 5rem auto;
+        margin: 5rem 1rem;
         width: fit-content;
         display: grid;
         grid-template-columns: auto auto auto;
-        grid-gap: 3rem;
+        grid-gap: 2rem;
 
         scroll-timeline-name: --imageTimeline;
 
@@ -75,7 +75,7 @@
         }
 
         .projects__image {
-            transition: filter 0.2s;
+            transition: filter 0.4s;
             border-radius: 1rem;
             box-shadow:
                 5px 0 10px rgba(0, 0, 0, 0.2),

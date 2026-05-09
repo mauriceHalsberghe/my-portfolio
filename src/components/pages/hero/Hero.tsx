@@ -10,7 +10,8 @@ export default function Hero() {
     "Full-Stack Developer", 
     "JavaScript Enthusiast", 
     "Student at Artevelde University", 
-    "Back-End Developer", 
+    "Back-End Developer",
+    "Intern at Restomanager",
     "API Explorer"
   ];
  

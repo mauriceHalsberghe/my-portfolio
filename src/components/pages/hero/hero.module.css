@@ -3,6 +3,10 @@
   
   .hero__title {
     margin-top: 11rem;
+
+    @media (max-width: 480px) {
+      margin-top: 4rem;
+    }
   }
   .hero__image_large,
   .hero__image_small {
