@@ -21,14 +21,7 @@ export default function ModeToggle() {
       document.documentElement.classList.remove("dark");
       setIsDark(false);
     } else {
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-
-      if (prefersDark) {
-        document.documentElement.classList.add("dark");
-        setIsDark(true);
-      }
+      setIsDark(false);
     }
   }, []);
 
@@ -51,12 +44,8 @@ export default function ModeToggle() {
   return (
     <button
       onClick={handleClick}
-      aria-label="Toggle dark mode"
-      className={styles.darkToggle}
-      style={{
-
-      }}
-
+      aria-label="Toggle dark/light mode"
+      className={styles.modeToggle}
     >
       {isDark ? <FontAwesomeIcon icon={faSun} /> : <FontAwesomeIcon icon={faMoon} /> }
     </button>

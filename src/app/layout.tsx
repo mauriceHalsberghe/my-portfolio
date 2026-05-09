@@ -20,11 +20,18 @@ export default function RootLayout({
   children: React.ReactNode; 
 }>) { 
   
-  return ( 
-    <html lang="en"> 
-      <body className={`${rubikMonoOne.variable} antialiased`}> 
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark')document.documentElement.classList.add('dark');}catch(e){}})();`,
+          }}
+        />
+      </head>
+      <body className={`${rubikMonoOne.variable} antialiased`}>
         {children}
-      </body> 
-    </html> 
+      </body>
+    </html>
   ); 
 }
