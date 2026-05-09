@@ -102,7 +102,7 @@ export default function Navbar() {
                 <Link
                   key={id}
                   href={`/#${id}`}
-                  onClick={() => setShowNav(false)}
+                  onClick={() => width < 481 && setShowNav(false)}
                   className={`${styles.navbar__link} ${
                     activeSection === id ? styles.active : ""
                   }`}

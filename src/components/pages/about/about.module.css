@@ -107,6 +107,7 @@
   pointer-events: none;
   @media (max-width: 480px) {
     width: 4rem;
+    height: 4rem;
   }
 }
 
