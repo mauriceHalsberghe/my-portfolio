@@ -6,6 +6,7 @@ import styles from "@/components/pages/projects/project.module.css"
 import Footer from "@/components/ui/footer/Footer";
 import Navbar from "@/components/ui/navbar/Navbar";
 import ImageWithPreview from "@/components/ui/image-preview/ImagePreview";
+import ScrollToTop from "@/components/ui/scroll-to-top/ScrollToTop";
 
 export async function generateStaticParams() {
   return projects.map((project) => ({
@@ -34,6 +35,7 @@ export default async function ProjectPage({
 
   return (
     <>
+      <ScrollToTop />
       <Navbar />
       <section className={styles.project}>
         <div className={styles.project__intro}>
