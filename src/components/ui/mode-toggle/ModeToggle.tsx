@@ -3,8 +3,6 @@
 import { useEffect, useState, useRef } from "react";
 
 import styles from "./mode-toggle.module.css";
-import { MoonIcon } from "@/components/icons/MoonIcon";
-import { SunIcon } from "@/components/icons/SunIcon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 
