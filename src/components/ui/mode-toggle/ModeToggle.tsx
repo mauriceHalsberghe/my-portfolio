@@ -2,12 +2,12 @@
 
 import { useEffect, useState, useRef } from "react";
 
-import{ MoonIcon } from "./icons/MoonIcon";
-import{ SunIcon } from "./icons/SunIcon";
+import styles from "./mode-toggle.module.css";
+import { MoonIcon } from "@/components/icons/MoonIcon";
+import { SunIcon } from "@/components/icons/SunIcon";
 
-import styles from "../ui/navbar.module.css";
 
-export default function DarkModeToggle() {
+export default function ModeToggle() {
   const [isDark, setIsDark] = useState(false);
   const clickTimes = useRef<number[]>([]);
 

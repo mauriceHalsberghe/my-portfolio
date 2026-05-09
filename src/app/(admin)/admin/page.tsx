@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-import AdminStyling from "@/app/ui/admin.module.css";
+import AdminStyling from "./admin.module.css";
 
 type Project = {
   id: number;

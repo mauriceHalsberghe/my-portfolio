@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-import AdminStyling from "@/app/ui/admin.module.css";
+import AdminStyling from "../admin.module.css";
 import Link from "next/link";
 
 export default function AdminLogin() {

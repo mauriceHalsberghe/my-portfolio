@@ -1,4 +1,3 @@
-import styles from "../ui/navbar.module.css";
 
 export function GitHubIcon({ className }: { className?: string }) {
   return (

@@ -2,10 +2,9 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import styles from "../ui/navbar.module.css";
-
-import DarkModeToggle from "./DarkModeToggle";
-import { GitHubIcon } from "./icons/GitHubIcon";
+import styles from "./navbar.module.css";
+import { GitHubIcon } from "../../icons/GitHubIcon";
+import ModeToggle from "../mode-toggle/ModeToggle";
 
 export default function Navbar() {
   const sections = ["hero", "about", "projects", "contact"];
@@ -54,7 +53,7 @@ export default function Navbar() {
       <GitHubIcon />
     </Link>
 
-    <DarkModeToggle />
+    <ModeToggle />
     <nav className={styles.navbar}>
 
       <div className={styles.navbar__list}>

@@ -1,7 +1,8 @@
-import styles from "../ui/projects.module.css";
+import styles from "./projects.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import projects from "../data/projects.json";
+
+import projects from "@/data/projects.json";
 
 export default function Projects() {
   return (

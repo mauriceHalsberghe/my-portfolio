@@ -1,11 +1,11 @@
-import projects from "../../data/projects.json";
+import projects from "@/data/projects.json";
 
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
 
 import Link from "next/link";
-import ImageWithPreview from "../../components/ImageWithPreview";
-import styles from "../../ui/project.module.css";
+import styles from "@/components/pages/projects/project.module.css"
+import Footer from "@/components/ui/footer/Footer";
+import Navbar from "@/components/ui/navbar/Navbar";
+import ImageWithPreview from "@/components/ui/image-preview/ImagePreview";
 
 export async function generateStaticParams() {
   return projects.map((project) => ({

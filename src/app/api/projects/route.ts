@@ -14,7 +14,7 @@ type Project = {
   description: string[];
 };
 
-const filePath = path.join(process.cwd(), "src/app/data/projects.json");
+const filePath = path.join(process.cwd(), "src/data/projects.json");
 
 console.log(filePath);
 

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import styles from "../ui/imageModal.module.css";
+import styles from "./image-preview.module.css";
 
 type Props = {
   src: string;
@@ -14,7 +14,7 @@ type Props = {
   height?: number;
 };
 
-export default function ImageWithPreview({
+export default function ImagePreview({
   src,
   alt,
   images,

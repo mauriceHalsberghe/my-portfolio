@@ -1,4 +1,4 @@
-import styles from "../ui/contact.module.css";
+import styles from "./contact.module.css";
 import Link from "next/link";
 
 export default function Contact() {

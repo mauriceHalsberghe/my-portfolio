@@ -1,18 +1,17 @@
 "use client";
 import { ComponentType, useEffect, useState } from "react";
-import styles from "../ui/about.module.css";
+import styles from "./about.module.css";
 
-import { JavaScriptIcon } from "../components/icons/JavaScriptIcon";
-import { PHPIcon } from "../components/icons/PHPIcon";
-import { TypeScriptIcon } from "../components/icons/TypeScriptIcon";
-import { ReactIcon } from "../components/icons/ReactIcon";
-import { PythonIcon } from "../components/icons/PythonIcon";
-import { HTMLIcon } from "../components/icons/HTMLIcon";
-import { CSSIcon } from "../components/icons/CSSIcon";
-import { GitIcon } from "../components/icons/GitIcon";
-import { CSharpIcon } from "../components/icons/CSharpIcon";
-
-import { TechIcon } from "../components/icons/TechIcon";
+import { JavaScriptIcon } from "../../icons/JavaScriptIcon";
+import { PHPIcon } from "../../icons/PHPIcon";
+import { TypeScriptIcon } from "../../icons/TypeScriptIcon";
+import { ReactIcon } from "../../icons/ReactIcon";
+import { PythonIcon } from "../../icons/PythonIcon";
+import { HTMLIcon } from "../../icons/HTMLIcon";
+import { CSSIcon } from "../../icons/CSSIcon";
+import { GitIcon } from "../../icons/GitIcon";
+import { CSharpIcon } from "../../icons/CSharpIcon";
+import { TechIcon } from "../../icons/TechIcon";
 
 interface Tech {
   name: string;

@@ -13,7 +13,7 @@ type AboutData = {
   tech: TechEntry[];
 };
 
-const filePath = path.join(process.cwd(), "src", "app", "data", "about.json");
+const filePath = path.join(process.cwd(), "src", "data", "about.json");
 
 export async function GET() {
   const data = fs.readFileSync(filePath, "utf-8");

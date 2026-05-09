@@ -2,7 +2,7 @@
  
 import Link from "next/link"; 
 import { useEffect, useState } from "react"; 
-import styles from "../ui/hero.module.css"; 
+import styles from "./hero.module.css"; 
 import Image from "next/image"; 
  
 export default function Hero() { 

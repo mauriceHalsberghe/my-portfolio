@@ -1,7 +1,7 @@
-import Navbar from "../../components/Navbar";
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import styles from "../../ui/project.module.css"
+import styles from "@/components/pages/projects/project.module.css"
+import Navbar from '@/components/ui/navbar/Navbar';
 
 
 export default function ProjectPage() {
