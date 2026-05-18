@@ -76,7 +76,7 @@
   },
   {
     "id": 4,
-    "order": 15,
+    "order": 7,
     "name": "First Portfolio",
     "tags": [
       "CraftCMS",
@@ -101,7 +101,7 @@
   },
   {
     "id": 5,
-    "order": 6,
+    "order": 5,
     "name": "Binary Library",
     "tags": [
       "React",
@@ -125,7 +125,7 @@
   },
   {
     "id": 6,
-    "order": 7,
+    "order": 6,
     "name": "Best of 2024",
     "tags": [
       "CSS",
@@ -149,6 +149,7 @@
     ]
   },
   {
+    "id": 7,
     "order": 1,
     "name": "Mealio",
     "tags": [
@@ -170,7 +171,24 @@
       "Mealio is an interactive recipe app that suggests suitable recipes using the ingredients you currently have. Missing an ingredient? You can easily add it to your shopping list.",
       "In addition, users can follow specific diets, set their own allergies, and create their own recipes. The app also allows users to rate, like, share, and comment on recipes.",
       ""
+    ]
+  },
+  {
+    "name": "Mosaic Builder",
+    "order": 8,
+    "tags": [
+      "JavaScript"
     ],
-    "id": 1775937041348
+    "banner_img": "mosaic_1.png",
+    "images": [],
+    "github_link": "",
+    "project_link": "https://brick-mosaic-builder.vercel.app/",
+    "description": [
+      "A small project to turn images into brick mosaics, based on what bricks you have. Upload, choose size, add bricks to your inventory, adjust HSL of image, export to .pdf with preview image and all bricks used.",
+      "",
+      "",
+      ""
+    ],
+    "id": 1779102311058
   }
 ]

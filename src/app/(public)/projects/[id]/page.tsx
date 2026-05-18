@@ -85,37 +85,39 @@ export default async function ProjectPage({
             height={400}
           />
         </div>
-        <div className={styles.project__content1}>
-          <div className={styles.project_images}>
-            <ImageWithPreview
-              className={styles.project__image}
-              src={"/images/" + project.images[0]}
-              width={600}
-              height={400}
-              alt={project.name}
-              images={[
-                "/images/" + project.banner_img,
-                ...project.images.map((i) => "/images/" + i),
-              ]}
-              index={1}
-            />
-            <ImageWithPreview
-              className={styles.project__image}
-              src={"/images/" + project.images[1]}
-              width={600}
-              height={400}
-              alt={project.name}
-              images={[
-                "/images/" + project.banner_img,
-                ...project.images.map((i) => "/images/" + i),
-              ]}
-              index={2}
-            />
+        {project.description[2] && (
+          <div className={styles.project__content1}>
+            <div className={styles.project_images}>
+              <ImageWithPreview
+                className={styles.project__image}
+                src={"/images/" + project.images[0]}
+                width={600}
+                height={400}
+                alt={project.name}
+                images={[
+                  "/images/" + project.banner_img,
+                  ...project.images.map((i) => "/images/" + i),
+                ]}
+                index={1}
+              />
+              <ImageWithPreview
+                className={styles.project__image}
+                src={"/images/" + project.images[1]}
+                width={600}
+                height={400}
+                alt={project.name}
+                images={[
+                  "/images/" + project.banner_img,
+                  ...project.images.map((i) => "/images/" + i),
+                ]}
+                index={2}
+              />
+            </div>
+            <p className={styles.project__description}>
+              {project.description[1]}
+            </p>
           </div>
-          <p className={styles.project__description}>
-            {project.description[1]}
-          </p>
-        </div>
+        )}
         {project.description[2] && (
           <div className={styles.project__content2}>
             <div className={styles.project_images}>

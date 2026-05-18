@@ -3,19 +3,22 @@ import Image from "next/image";
 import Link from "next/link";
 
 import projects from "@/data/projects.json";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
-export default function Projects() {
+export default function Projects() {  
   return (
     <section className={styles.projects} id="projects">
       <h2 className={styles.projects__title}>Projects</h2>
 
       <p className={styles.projects__content}>
-        A collection of my recent projects built with different sorts of web technologies. 
+        Some of my recent projects built with different sorts of web technologies.
       </p>
 
       <div className={styles.projects__cards}>
         {projects
           .sort((a, b) => a.order - b.order)
+          .slice(0, 6)
           .map((project) => (
           <Link key={project.id} href={`/projects/${project.id}`} className={styles.projects__card}>
             <Image className={styles.projects__image} src={"/images/" + project.banner_img} width={450} height={250} alt={project.name} />
@@ -28,6 +31,11 @@ export default function Projects() {
           </Link>
         ))}
       </div>
+
+      <Link href={"/projects"} className={styles.allProjects}>
+        See all Projects
+        <FontAwesomeIcon icon={faChevronRight} />
+      </Link>
     </section>
   );
 }
