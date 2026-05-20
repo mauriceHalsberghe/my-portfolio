@@ -37,6 +37,11 @@ export default function ProjectPage() {
 
       </section>
 
+      <div className={styles.footer}>
+        <p className={styles.footer__first}>Interested in even more of my projects?</p>
+        <p className={styles.footer__second}>Check out my <Link href={"https://github.com/mauriceHalsberghe"} target="_blank">GitHub</Link>!</p>
+      </div>
+
       <Footer />
     </>
   );
