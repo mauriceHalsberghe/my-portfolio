@@ -5,6 +5,7 @@ import Link from "next/link";
 import projects from "@/data/projects.json";
 import ScrollToTop from "@/components/ui/scroll-to-top/ScrollToTop";
 import Navbar from "@/components/ui/navbar/Navbar";
+import Footer from "@/components/ui/footer/Footer";
 
 export default function ProjectPage() {  
   return (
@@ -35,6 +36,8 @@ export default function ProjectPage() {
         </div>
 
       </section>
+
+      <Footer />
     </>
   );
 }

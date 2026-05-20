@@ -89,6 +89,7 @@
             transition: filter 0.4s;
             height: 350px;
             object-fit: cover;
+            object-position: top center;
             border-radius: 1rem;
             box-shadow:
                 5px 0 10px rgba(0, 0, 0, 0.2),
@@ -166,17 +167,33 @@
         }
     }
 
-    .allProjects {
-        font-size: 1.2rem;
-        font-weight: 500;
-        position: absolute;
-        right: 0;
-        margin-right: 1rem;
-        @media (max-width: 768px) {
-            position: static;
-            display: block;
+    .seeMore {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        align-items: center;
+        gap: 0.5rem;
+
+        p {
+            width: fit-content;
+            color: var(--middle);
+            font-style: italic;
+        }
+        .allProjects {
+            width: fit-content;
+            font-size: 1.5rem;
+            font-weight: 600;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .animating svg {
+            animation: bounceRight 1s infinite ease-in-out;
         }
     }
+
 }
 
 @keyframes slideUp {
@@ -186,6 +203,22 @@
     to {
         transform: translateY(0);
     }
+}
+
+@keyframes bounceRight {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(0);
+  }
+  40% {
+    transform: translateX(8px);
+  }
+  60% {
+    transform: translateX(4px);
+  }
 }
 
 @view-transition {

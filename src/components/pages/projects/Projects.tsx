@@ -3,8 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import projects from "@/data/projects.json";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import AllProjectsLink from "./AllProjectsLink";
 
 export default function Projects() {  
   return (
@@ -31,11 +30,12 @@ export default function Projects() {
           </Link>
         ))}
       </div>
-
-      <Link href={"/projects"} className={styles.allProjects}>
-        See all Projects
-        <FontAwesomeIcon icon={faChevronRight} />
-      </Link>
+      
+      <div className={styles.seeMore}>
+        <p>Wanna explore more?</p>
+        <AllProjectsLink />
+      </div>
+      
     </section>
   );
 }

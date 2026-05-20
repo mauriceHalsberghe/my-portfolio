@@ -67,6 +67,7 @@
       "kanban_5.png"
     ],
     "github_link": "https://github.com/pgm-2425-programming-4/final-project-mauriceHalsberghe",
+    "project_link": "https://aero-kanban.netlify.app",
     "description": [
       "This was my first project while learning React. A basic Kanban Task app with a Strapi server, and possibilities to read, add, edit and delete tasks. All within a React interface styled to resemble Windows 7.",
       "All tasks have a category, which also can be created. You can search in realtime for tasks in the search bar, and filter based on task labels. There also is a backlog with pagination, for access to unused tasks.",

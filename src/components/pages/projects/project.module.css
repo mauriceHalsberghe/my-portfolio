@@ -234,10 +234,12 @@
         cursor: none;
         position: relative;
 
-        &:hover::after {
-            cursor: none;
+
+        &::after {
             content: attr(data-label);
-            font-size: 1.2rem;
+            opacity: 0;
+            transition: opacity 200ms ease, transform 200ms ease;
+            font-size: 0.9rem;
             font-weight: 600;
             background-color: var(--bubble);
             border-radius: 2rem;
@@ -249,11 +251,17 @@
             position: fixed;
             left: var(--mouse-x, 0);
             top: var(--mouse-y, 0);
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%) scaleX(0);
             pointer-events: none;
             padding: 0.5rem 1rem;
             white-space: nowrap;
             z-index: 999;
+        }
+
+        &:hover::after {
+            opacity: 1;
+            width: auto;
+            transform: translate(-50%, -50%) scaleX(1);
         }
     }
 }
