@@ -80,11 +80,15 @@
     border-radius: 10rem;
     
     button, a {
-        transition: color 200ms ease;
+        transition: color 200ms ease, transform 200ms ease;
     }
 
     button:hover, a:hover {
         color: var(--main-red);
+    }
+
+    button:active, a:active {
+        transform: scale(0.9);
     }
 
     @media (max-width: 768px) {
@@ -95,5 +99,8 @@
     @media (max-width: 480px) {
         top: 1rem;
         right: 1rem;
+        button:hover, a:hover {
+            color: var(--text);
+        }
     }
 }

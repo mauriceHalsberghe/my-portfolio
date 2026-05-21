@@ -89,6 +89,17 @@ export default function TagSelect({ onChange }: TagSelectProps) {
               ...baseStyles,
               color: "white",
             }),
+            multiValueRemove: (baseStyles) => ({
+              ...baseStyles,
+              color: "white",
+              "&:hover": {
+                borderRadius: "5rem",
+                cursor: "pointer"
+              },
+            }),
+            indicatorSeparator: () => ({
+              display: "none",
+            }),
           }}
         />
     );
