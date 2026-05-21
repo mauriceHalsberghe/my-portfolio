@@ -36,6 +36,7 @@ export default function TagSelect({ onChange }: TagSelectProps) {
           isMulti
           options={options}
           className={styles.select}
+          menuIsOpen
           placeholder="Select project tags..."
           onChange={(selected) => onChange(selected as readonly TagOption[])}
           styles={{
@@ -65,6 +66,7 @@ export default function TagSelect({ onChange }: TagSelectProps) {
               border: "1px solid #ffffff4d",
               borderRadius: "1rem",
               boxShadow: "5px 0 10px #0003, inset 5px -5px 10px #0003",
+              zIndex: "999"
             }),
             option: (baseStyles) => ({
               ...baseStyles,
