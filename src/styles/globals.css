@@ -6,6 +6,7 @@
     --main-yellow: #ded13f;
 
     --main-yellow-tr: hsla(55, 71%, 56%, 0.35);
+    --main-blue-tr: hsl(215, 70%, 43%, 0.5);
 
     --background: #f5f5f5;
     --middle: #6a6a6a;
@@ -16,6 +17,7 @@
 
 .dark {
     --background: #1f1f1f; 
+    --middle: #8d8d8d;
     --text: #e5e7eb;
     --main-yellow-tr: hsla(55, 96%, 69%, 0.384);
 

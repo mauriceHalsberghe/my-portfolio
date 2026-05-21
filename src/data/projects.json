@@ -32,7 +32,7 @@
     "tags": [
       "Laravel",
       "PHP",
-      "Fillament"
+      "Filament"
     ],
     "banner_img": "webshop_1.png",
     "images": [
@@ -106,7 +106,7 @@
     "name": "Binary Library",
     "tags": [
       "React",
-      "Next",
+      "Next.js",
       "Prisma"
     ],
     "banner_img": "library_1.png",

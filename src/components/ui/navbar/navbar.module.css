@@ -23,7 +23,7 @@
     }
 
     @media (max-width: 480px) {
-        margin-top: 3.5rem;
+        margin-top: 4rem;
         width: 95%;
         font-size: 1.8rem;
         backdrop-filter: blur(10px);
@@ -88,7 +88,7 @@
     }
 
     @media (max-width: 768px) {
-        top: 0.5rem;
+        top: 0.3rem;
         right: 1rem;
     }
 
