@@ -17,7 +17,9 @@
         .project__image {
             max-width: fit-content;
             width: 35%;
-            
+            position: relative;
+            cursor: none;
+
             @media (max-width: 768px) {
                 max-width: 100%;
                 width: 90vw;
@@ -229,5 +231,37 @@
             5px 0 10px rgba(0, 0, 0, 0.2),
             inset 5px -5px 10px rgba(0, 0, 0, 0.2);
         height: min-content;
+        cursor: none;
+        position: relative;
+
+
+        &::after {
+            content: attr(data-label);
+            opacity: 0;
+            transition: opacity 200ms ease, transform 200ms ease;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background-color: var(--bubble);
+            border-radius: 2rem;
+            box-shadow:
+                5px 0 10px rgba(0, 0, 0, 0.2),
+                inset 5px -5px 10px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: fixed;
+            left: var(--mouse-x, 0);
+            top: var(--mouse-y, 0);
+            transform: translate(-50%, -50%) scaleX(0);
+            pointer-events: none;
+            padding: 0.5rem 1rem;
+            white-space: nowrap;
+            z-index: 999;
+        }
+
+        &:hover::after {
+            opacity: 1;
+            width: auto;
+            transform: translate(-50%, -50%) scaleX(1);
+        }
     }
 }

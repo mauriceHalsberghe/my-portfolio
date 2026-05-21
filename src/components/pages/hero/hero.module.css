@@ -43,16 +43,18 @@
   width: fit-content;
   padding: 1rem;
   margin: 0 auto;
-  z-index: 5;
+  z-index: 999;
 }
 
 .arrow {
   width: 1.5rem;
   height: 1.5rem;
-  border-right: 2px solid #484848;
-  border-bottom: 2px solid #484848;
+  z-index: 999;
+  position: relative;
+  border-right: 2px solid var(--middle);
+  border-bottom: 2px solid var(--middle);
   transform:  rotate(45deg);
-  animation: bounce 1s infinite;
+  animation: bounce 1s infinite ease-in-out;
 }
 
 @keyframes bounce {

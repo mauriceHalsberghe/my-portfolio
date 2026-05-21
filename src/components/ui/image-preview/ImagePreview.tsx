@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import Image from "next/image";
 import styles from "./image-preview.module.css";
 
@@ -25,6 +25,49 @@ export default function ImagePreview({
 }: Props) {
   const [open, setOpen] = useState(false);
   const [cur, setCur] = useState(index);
+  const triggerRef = useRef<HTMLDivElement>(null);
+  const target = useRef({ x: 0, y: 0 });
+  const pos = useRef({ x: 0, y: 0 });
+  const rafId = useRef<number | null>(null);
+
+  const EASE = 0.2;
+
+  function tick() {
+    const el = triggerRef.current;
+    if (!el) {
+      rafId.current = null;
+      return;
+    }
+    pos.current.x += (target.current.x - pos.current.x) * EASE;
+    pos.current.y += (target.current.y - pos.current.y) * EASE;
+    el.style.setProperty("--mouse-x", `${pos.current.x}px`);
+    el.style.setProperty("--mouse-y", `${pos.current.y}px`);
+    rafId.current = requestAnimationFrame(tick);
+  }
+
+  function handleEnter(e: MouseEvent<HTMLDivElement>) {
+    pos.current = { x: e.clientX, y: e.clientY };
+    target.current = { x: e.clientX, y: e.clientY };
+    if (rafId.current === null) rafId.current = requestAnimationFrame(tick);
+  }
+
+  function handleMove(e: MouseEvent<HTMLDivElement>) {
+    target.current.x = e.clientX;
+    target.current.y = e.clientY;
+  }
+
+  function handleLeave() {
+    if (rafId.current !== null) {
+      cancelAnimationFrame(rafId.current);
+      rafId.current = null;
+    }
+  }
+
+  useEffect(() => {
+    return () => {
+      if (rafId.current !== null) cancelAnimationFrame(rafId.current);
+    };
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -54,9 +97,13 @@ export default function ImagePreview({
   return (
     <>
       <div
-        className={className}
+        ref={triggerRef}
+        className={`${className ?? ""} ${styles.trigger}`}
+        data-label="Click for preview"
         onClick={() => openAt(index)}
-        style={{ cursor: "pointer" }}
+        onMouseEnter={handleEnter}
+        onMouseMove={handleMove}
+        onMouseLeave={handleLeave}
       >
         <Image
           src={src}
@@ -92,7 +139,7 @@ export default function ImagePreview({
             }}
             aria-label="Previous"
           >
-            <Image src={'/svg/chevron-left.svg'} width={50} height={50} alt={'<'} />
+            <Image src={"/svg/chevron-left.svg"} width={50} height={50} alt={"<"} />
           </button>
           <div className={styles.frame} onClick={(e) => e.stopPropagation()}>
             <Image
@@ -114,7 +161,7 @@ export default function ImagePreview({
             }}
             aria-label="Next"
           >
-            <Image src={'/svg/chevron-right.svg'} width={50} height={50} alt={'>'} />
+            <Image src={"/svg/chevron-right.svg"} width={50} height={50} alt={">"} />
           </button>
         </div>
       )}

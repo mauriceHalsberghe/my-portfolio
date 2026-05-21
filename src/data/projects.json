@@ -32,7 +32,7 @@
     "tags": [
       "Laravel",
       "PHP",
-      "Fillament"
+      "Filament"
     ],
     "banner_img": "webshop_1.png",
     "images": [
@@ -67,6 +67,7 @@
       "kanban_5.png"
     ],
     "github_link": "https://github.com/pgm-2425-programming-4/final-project-mauriceHalsberghe",
+    "project_link": "https://aero-kanban.netlify.app",
     "description": [
       "This was my first project while learning React. A basic Kanban Task app with a Strapi server, and possibilities to read, add, edit and delete tasks. All within a React interface styled to resemble Windows 7.",
       "All tasks have a category, which also can be created. You can search in realtime for tasks in the search bar, and filter based on task labels. There also is a backlog with pagination, for access to unused tasks.",
@@ -76,7 +77,7 @@
   },
   {
     "id": 4,
-    "order": 15,
+    "order": 7,
     "name": "First Portfolio",
     "tags": [
       "CraftCMS",
@@ -101,11 +102,11 @@
   },
   {
     "id": 5,
-    "order": 6,
+    "order": 5,
     "name": "Binary Library",
     "tags": [
       "React",
-      "Next",
+      "Next.js",
       "Prisma"
     ],
     "banner_img": "library_1.png",
@@ -125,7 +126,7 @@
   },
   {
     "id": 6,
-    "order": 7,
+    "order": 6,
     "name": "Best of 2024",
     "tags": [
       "CSS",
@@ -149,6 +150,7 @@
     ]
   },
   {
+    "id": 7,
     "order": 1,
     "name": "Mealio",
     "tags": [
@@ -170,7 +172,24 @@
       "Mealio is an interactive recipe app that suggests suitable recipes using the ingredients you currently have. Missing an ingredient? You can easily add it to your shopping list.",
       "In addition, users can follow specific diets, set their own allergies, and create their own recipes. The app also allows users to rate, like, share, and comment on recipes.",
       ""
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Mosaic Builder",
+    "order": 8,
+    "tags": [
+      "JavaScript"
     ],
-    "id": 1775937041348
+    "banner_img": "mosaic_1.png",
+    "images": [],
+    "github_link": "",
+    "project_link": "https://brick-mosaic-builder.vercel.app/",
+    "description": [
+      "A small project to turn images into brick mosaics, based on what bricks you have. Upload, choose size, add bricks to your inventory, adjust HSL of image, export to .pdf with preview image and all bricks used.",
+      "",
+      "",
+      ""
+    ]
   }
 ]

@@ -23,7 +23,7 @@
     }
 
     @media (max-width: 480px) {
-        margin-top: 3.5rem;
+        margin-top: 4rem;
         width: 95%;
         font-size: 1.8rem;
         backdrop-filter: blur(10px);
@@ -63,16 +63,32 @@
 .buttons {
     position: fixed;
     right: 3rem;
-    top: 3.4rem;
+    top: 2.5rem;
     z-index: 1000;
     display: flex;
-    gap: 0.8rem;
+    gap: 0.4rem;
     font-size: 1.2rem;
     color: var(--text);
     font-size: 1.5rem;
+    padding: 0.25rem 0.5rem;
+    background-color: var(--bubble);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+      3px 0 8px rgba(0, 0, 0, 0.1),
+      inset 5px -5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10rem;
+    
+    button, a {
+        transition: color 200ms ease;
+    }
+
+    button:hover, a:hover {
+        color: var(--main-red);
+    }
 
     @media (max-width: 768px) {
-        top: 1rem;
+        top: 0.3rem;
         right: 1rem;
     }
 
