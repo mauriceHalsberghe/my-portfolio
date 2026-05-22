@@ -36,7 +36,6 @@ export default function TagSelect({ onChange }: TagSelectProps) {
           isMulti
           options={options}
           className={styles.select}
-          menuIsOpen
           placeholder="Select project tags..."
           onChange={(selected) => onChange(selected as readonly TagOption[])}
           styles={{
