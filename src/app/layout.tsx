@@ -1,6 +1,8 @@
 import type { Metadata } from "next"; 
 import { Rubik_Mono_One } from "next/font/google"; 
+import Script from "next/script";
 import "@/styles/globals.css";
+
  
 const rubikMonoOne = Rubik_Mono_One({ 
   subsets: ["latin"], 
@@ -23,7 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script
+        <Script
+          id="theme-init"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark')document.documentElement.classList.add('dark');}catch(e){}})();`,
           }}

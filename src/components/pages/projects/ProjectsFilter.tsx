@@ -18,6 +18,21 @@ interface ProjectsFilterProps {
   projects: Project[];
 }
 
+function ProjectImage({ src, alt }: { src: string; alt: string }) {
+  const [imgSrc, setImgSrc] = useState(src);  
+
+  return (
+    <Image
+      className={styles.projects__image}
+      src={imgSrc}
+      width={450}
+      height={250}
+      alt={alt}
+      onError={() => setImgSrc("/images/placeholder.png")}
+    />
+  );
+}
+
 export default function ProjectsFilter({ projects }: ProjectsFilterProps) {
   const [selectedTags, setSelectedTags] = useState<readonly TagOption[]>([]);
 
@@ -45,11 +60,8 @@ export default function ProjectsFilter({ projects }: ProjectsFilterProps) {
             href={`/projects/${project.id}`}
             className={styles.projects__card}
           >
-            <Image
-              className={styles.projects__image}
-              src={"/images/" + project.banner_img}
-              width={450}
-              height={250}
+            <ProjectImage
+              src={"/images/" + (project.banner_img || "placeholder.png")}
               alt={project.name}
             />
             <h3 className={styles.projects__name}>{project.name}</h3>

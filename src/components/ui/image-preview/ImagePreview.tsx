@@ -14,6 +14,8 @@ type Props = {
   height?: number;
 };
 
+const PLACEHOLDER = "/images/placeholder.png";
+
 export default function ImagePreview({
   src,
   alt,
@@ -25,6 +27,10 @@ export default function ImagePreview({
 }: Props) {
   const [open, setOpen] = useState(false);
   const [cur, setCur] = useState(index);
+  const [imgSrc, setImgSrc] = useState(src || PLACEHOLDER);
+  const [gallerySrcs, setGallerySrcs] = useState(
+    images.map((i) => i || PLACEHOLDER)
+  );
   const triggerRef = useRef<HTMLDivElement>(null);
   const target = useRef({ x: 0, y: 0 });
   const pos = useRef({ x: 0, y: 0 });
@@ -106,11 +112,12 @@ export default function ImagePreview({
         onMouseLeave={handleLeave}
       >
         <Image
-          src={src}
+          src={imgSrc}
           alt={alt ?? "image"}
           width={width ?? 600}
           height={height ?? 400}
           className={styles.inlineImage}
+          onError={() => setImgSrc(PLACEHOLDER)}
         />
       </div>
 
@@ -143,11 +150,16 @@ export default function ImagePreview({
           </button>
           <div className={styles.frame} onClick={(e) => e.stopPropagation()}>
             <Image
-              src={images[cur]}
+              src={gallerySrcs[cur]}
               alt={alt ?? "image"}
               width={1400}
               height={800}
               className={styles.fullImage}
+              onError={() =>
+                setGallerySrcs((prev) =>
+                  prev.map((s, i) => (i === cur ? PLACEHOLDER : s))
+                )
+              }
             />
             <div className={styles.counter}>
               {cur + 1} / {images.length}
