@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
 import fs from "fs";
 import path from "path";
 
@@ -16,8 +17,14 @@ type Project = {
 
 const filePath = path.join(process.cwd(), "src/data/projects.json");
 
-console.log(filePath);
+async function isAuthorized(): Promise<boolean> {
+  const store = await cookies();
+  return store.get("admin_auth")?.value === process.env.ADMIN_SECRET;
+}
 
+function unauthorized() {
+  return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+}
 
 export async function GET() {
   const data = fs.readFileSync(filePath, "utf-8");
@@ -25,6 +32,7 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
+  if (!(await isAuthorized())) return unauthorized();
   const body = await req.json() as Omit<Project, "id">;
   const data: Project[] = JSON.parse(fs.readFileSync(filePath, "utf-8"));
   const newProject: Project = { ...body, id: Date.now() };
@@ -34,6 +42,7 @@ export async function POST(req: Request) {
 }
 
 export async function PUT(req: Request) {
+  if (!(await isAuthorized())) return unauthorized();
   const body = await req.json() as Project;
   let data: Project[] = JSON.parse(fs.readFileSync(filePath, "utf-8"));
   data = data.map((p) => (p.id === body.id ? body : p));
@@ -42,6 +51,7 @@ export async function PUT(req: Request) {
 }
 
 export async function DELETE(req: Request) {
+  if (!(await isAuthorized())) return unauthorized();
   const { id } = await req.json() as { id: number };
   let data: Project[] = JSON.parse(fs.readFileSync(filePath, "utf-8"));
   data = data.filter((p) => p.id !== id);
