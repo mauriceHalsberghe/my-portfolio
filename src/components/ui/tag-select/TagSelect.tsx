@@ -86,7 +86,7 @@ export default function TagSelect({ onChange }: TagSelectProps) {
           boxShadow: "0 0 10px #0003",
           transition: "background 200ms ease",
           "&:hover": {
-            backgroundColor: "var(--main-blue-tr)",
+            backgroundColor: "color-mix(in srgb, var(--main-blue) 60%, transparent);",
           },
         }),
         multiValue: (baseStyles) => ({

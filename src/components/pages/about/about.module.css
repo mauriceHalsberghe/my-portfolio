@@ -9,6 +9,7 @@
 }
 
 .about__intro {
+  cursor: default;
   color: var(--text);
   display: flex;
   flex-direction: row;

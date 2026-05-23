@@ -27,53 +27,88 @@
 
 .inlineImage {
   display: block;
+  width: fit-content;
   border-radius: 1rem;
   box-shadow:
       5px 0 10px rgba(0, 0, 0, 0.2),
       inset 5px -5px 10px rgba(0, 0, 0, 0.2);
 }
-.close {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: transparent;
-  color: white;
-  border: none;
-  cursor: pointer;
-  z-index: 10000;
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 4rem;
-  padding: 0.3rem 1rem 0.4rem 1rem;
-  font-size: 2rem;
-}
 
 .prev,
-.next {
+.next,
+.close {
   position: fixed;
-  top: 50%;
   transform: translateY(-50%);
   border-radius: 4rem;
-  padding: 0.5rem;
-  background: rgba(0, 0, 0, 0.4);
+  background: color-mix(in srgb, var(--text) 50%, transparent);
   color: var(--background);
   border: none;
-  font-size: 4rem;
+  font-size: 2.5rem;
   cursor: pointer;
   z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 4rem;
+  transform: translateY(-50%);
+
+  transition: background 200ms ease, font-size 200ms ease;
+
+  &:hover {
+    background: color-mix(in srgb, var(--text) 80%, transparent);
+  }
+
+  &:active {
+    font-size: 2.25rem;
+  }
 }
+
 .prev {
-  left: 18px;
+  left: 1rem;
+  top: 50%;
+  @media (max-width: 768px) {
+    top: 90%;
+  }
 }
 .next {
-  right: 18px;
+  right: 1rem;
+  top: 50%;
+  @media (max-width: 768px) {
+    top: 90%;
+  }
 }
+.close {
+  top: 3rem;
+  right: 1rem;
+}
+
 .counter {
   position: absolute;
-  bottom: 8px;
-  right: 8px;
+  top: 1rem;
+  left: 1rem;
   color: white;
-  font-size: 14px;
   background: rgba(0, 0, 0, 0.35);
-  padding: 4px 8px;
+  padding: 4px 0;
+  text-align: center;
+  min-width: 3.2rem;
   border-radius: 4px;
+}
+
+@keyframes slideInFromRight {
+  from { transform: translateX(5rem); filter: brightness(0.5); }
+  to   { transform: translateX(0); filter: brightness(1); }
+}
+
+@keyframes slideInFromLeft {
+  from { transform: translateX(-5rem); filter: brightness(0.5); }
+  to   { transform: translateX(0); filter: brightness(1); }
+}
+
+.slideFromRight {
+  animation: slideInFromRight 500ms ease;
+}
+
+.slideFromLeft {
+  animation: slideInFromLeft 500ms ease;
 }

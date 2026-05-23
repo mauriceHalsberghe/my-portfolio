@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import Image from "next/image";
 import styles from "./image-preview.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft, faChevronRight, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
   src: string;
@@ -27,6 +29,7 @@ export default function ImagePreview({
 }: Props) {
   const [open, setOpen] = useState(false);
   const [cur, setCur] = useState(index);
+  const [direction, setDirection] = useState<"left" | "right">("right");
   const [imgSrc, setImgSrc] = useState(src || PLACEHOLDER);
   const [gallerySrcs, setGallerySrcs] = useState(
     images.map((i) => i || PLACEHOLDER)
@@ -94,9 +97,11 @@ export default function ImagePreview({
     setOpen(false);
   }
   function next() {
+    setDirection("right");
     setCur((c) => (c + 1) % images.length);
   }
   function prev() {
+    setDirection("left");
     setCur((c) => (c - 1 + images.length) % images.length);
   }
 
@@ -136,7 +141,7 @@ export default function ImagePreview({
             }}
             aria-label="Close"
           >
-            ✕
+            <FontAwesomeIcon icon={faXmark} />
           </button>
           <button
             className={styles.prev}
@@ -146,24 +151,29 @@ export default function ImagePreview({
             }}
             aria-label="Previous"
           >
-            <Image src={"/svg/chevron-left.svg"} width={50} height={50} alt={"<"} />
+            <FontAwesomeIcon icon={faChevronLeft} />
           </button>
           <div className={styles.frame} onClick={(e) => e.stopPropagation()}>
-            <Image
-              src={gallerySrcs[cur]}
-              alt={alt ?? "image"}
-              width={1400}
-              height={800}
-              className={styles.fullImage}
-              onError={() =>
-                setGallerySrcs((prev) =>
-                  prev.map((s, i) => (i === cur ? PLACEHOLDER : s))
-                )
-              }
-            />
-            <div className={styles.counter}>
-              {cur + 1} / {images.length}
+            <div
+              key={cur}
+              className={direction === "right" ? styles.slideFromRight : styles.slideFromLeft}
+            >
+              <Image
+                src={gallerySrcs[cur]}
+                alt={alt ?? "image"}
+                width={1400}
+                height={800}
+                className={styles.fullImage}
+                onError={() =>
+                  setGallerySrcs((prev) =>
+                    prev.map((s, i) => (i === cur ? PLACEHOLDER : s))
+                  )
+                }
+              />
             </div>
+          </div>
+          <div className={styles.counter}>
+            {cur + 1} / {images.length}
           </div>
           <button
             className={styles.next}
@@ -173,7 +183,7 @@ export default function ImagePreview({
             }}
             aria-label="Next"
           >
-            <Image src={"/svg/chevron-right.svg"} width={50} height={50} alt={">"} />
+            <FontAwesomeIcon icon={faChevronRight} />
           </button>
         </div>
       )}

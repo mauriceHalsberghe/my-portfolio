@@ -15,6 +15,7 @@
   }
 
   .contact__title {
+    cursor: default;
     font-family: var(--font-rubikmonoone);
     font-size: 6rem;
     color: var(--main-red);
