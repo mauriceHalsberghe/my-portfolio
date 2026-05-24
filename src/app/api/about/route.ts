@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import fs from "fs";
-import path from "path";
+import { kv } from "@vercel/kv";
+import initialData from "@/data/about.json";
 
 type TechEntry = {
   name: string;
@@ -14,7 +14,16 @@ type AboutData = {
   tech: TechEntry[];
 };
 
-const filePath = path.join(process.cwd(), "src", "data", "about.json");
+const KV_KEY = "about";
+
+async function getAbout(): Promise<AboutData> {
+  const data = await kv.get<AboutData>(KV_KEY);
+  if (!data) {
+    await kv.set(KV_KEY, initialData);
+    return initialData as AboutData;
+  }
+  return data;
+}
 
 async function isAuthorized(): Promise<boolean> {
   const store = await cookies();
@@ -26,13 +35,13 @@ function unauthorized() {
 }
 
 export async function GET() {
-  const data = fs.readFileSync(filePath, "utf-8");
-  return NextResponse.json(JSON.parse(data) as AboutData);
+  const data = await getAbout();
+  return NextResponse.json(data);
 }
 
 export async function PUT(req: Request) {
   if (!(await isAuthorized())) return unauthorized();
-  const body = await req.json() as AboutData;
-  fs.writeFileSync(filePath, JSON.stringify(body, null, 2));
+  const body = (await req.json()) as AboutData;
+  await kv.set(KV_KEY, body);
   return NextResponse.json(body);
 }

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import fs from "fs";
-import path from "path";
+import { kv } from "@vercel/kv";
+import initialData from "@/data/projects.json";
 
 type Project = {
   id: number;
@@ -15,7 +15,16 @@ type Project = {
   description: string[];
 };
 
-const filePath = path.join(process.cwd(), "src/data/projects.json");
+const KV_KEY = "projects";
+
+async function getProjects(): Promise<Project[]> {
+  const data = await kv.get<Project[]>(KV_KEY);
+  if (!data) {
+    await kv.set(KV_KEY, initialData);
+    return initialData as Project[];
+  }
+  return data;
+}
 
 async function isAuthorized(): Promise<boolean> {
   const store = await cookies();
@@ -27,34 +36,34 @@ function unauthorized() {
 }
 
 export async function GET() {
-  const data = fs.readFileSync(filePath, "utf-8");
-  return NextResponse.json(JSON.parse(data));
+  const data = await getProjects();
+  return NextResponse.json(data);
 }
 
 export async function POST(req: Request) {
   if (!(await isAuthorized())) return unauthorized();
-  const body = await req.json() as Omit<Project, "id">;
-  const data: Project[] = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  const body = (await req.json()) as Omit<Project, "id">;
+  const data = await getProjects();
   const newProject: Project = { ...body, id: Date.now() };
   data.push(newProject);
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+  await kv.set(KV_KEY, data);
   return NextResponse.json(newProject, { status: 201 });
 }
 
 export async function PUT(req: Request) {
   if (!(await isAuthorized())) return unauthorized();
-  const body = await req.json() as Project;
-  let data: Project[] = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  const body = (await req.json()) as Project;
+  let data = await getProjects();
   data = data.map((p) => (p.id === body.id ? body : p));
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+  await kv.set(KV_KEY, data);
   return NextResponse.json(body);
 }
 
 export async function DELETE(req: Request) {
   if (!(await isAuthorized())) return unauthorized();
-  const { id } = await req.json() as { id: number };
-  let data: Project[] = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  const { id } = (await req.json()) as { id: number };
+  let data = await getProjects();
   data = data.filter((p) => p.id !== id);
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+  await kv.set(KV_KEY, data);
   return NextResponse.json({ success: true });
 }
