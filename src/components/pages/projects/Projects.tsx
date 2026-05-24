@@ -4,9 +4,9 @@ import styles from "./projects.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-import projects from "@/data/projects.json";
+import type { Project } from "@/lib/projects";
 import AllProjectsLink from "./AllProjectsLink";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function ProjectImage({ src, alt }: { src: string; alt: string }) {
   const [imgSrc, setImgSrc] = useState(src);  
@@ -24,6 +24,12 @@ function ProjectImage({ src, alt }: { src: string; alt: string }) {
 }
 
 export default function Projects() {
+  const [projects, setProjects] = useState<Project[]>([]);
+
+  useEffect(() => {
+    fetch("/api/projects").then((r) => r.json()).then(setProjects);
+  }, []);
+
   return (
     <section className={styles.projects} id="projects">
       <h2 className={styles.projects__title}>Projects</h2>

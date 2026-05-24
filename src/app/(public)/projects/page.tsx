@@ -1,13 +1,14 @@
 import styles from "@/components/pages/projects/projects.module.css";
 import Link from "next/link";
 
-import projects from "@/data/projects.json";
+import { getProjects } from "@/lib/projects";
 import ScrollToTop from "@/components/ui/scroll-to-top/ScrollToTop";
 import Navbar from "@/components/ui/navbar/Navbar";
 import Footer from "@/components/ui/footer/Footer";
 import ProjectsFilter from "@/components/pages/projects/ProjectsFilter";
 
-export default function ProjectPage() {  
+export default async function ProjectPage() {
+  const projects = await getProjects();
   return (
     <>
       <ScrollToTop />

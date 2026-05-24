@@ -1,6 +1,4 @@
-import projects from "@/data/projects.json";
-
-
+import { getProjects } from "@/lib/projects";
 import Link from "next/link";
 import styles from "@/components/pages/projects/project.module.css"
 import Footer from "@/components/ui/footer/Footer";
@@ -8,11 +6,7 @@ import Navbar from "@/components/ui/navbar/Navbar";
 import ImageWithPreview from "@/components/ui/image-preview/ImagePreview";
 import ScrollToTop from "@/components/ui/scroll-to-top/ScrollToTop";
 
-export async function generateStaticParams() {
-  return projects.map((project) => ({
-    id: project.id.toString(),
-  }));
-}
+export const dynamicParams = true;
 
 export default async function ProjectPage({
   params,
@@ -21,6 +15,7 @@ export default async function ProjectPage({
 }) {
   const { id } = await params;
 
+  const projects = await getProjects();
   const project = projects.find((p) => p.id.toString() === id);
 
   if (!project) {

@@ -1,30 +1,8 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { revalidatePath } from "next/cache";
 import { kv } from "@vercel/kv";
-import initialData from "@/data/projects.json";
-
-type Project = {
-  id: number;
-  order: number;
-  name: string;
-  tags: string[];
-  banner_img: string;
-  images: string[];
-  github_link: string;
-  project_link?: string;
-  description: string[];
-};
-
-const KV_KEY = "projects";
-
-async function getProjects(): Promise<Project[]> {
-  const data = await kv.get<Project[]>(KV_KEY);
-  if (!data) {
-    await kv.set(KV_KEY, initialData);
-    return initialData as Project[];
-  }
-  return data;
-}
+import { getProjects, KV_KEY, type Project } from "@/lib/projects";
 
 async function isAuthorized(): Promise<boolean> {
   const store = await cookies();
@@ -47,6 +25,8 @@ export async function POST(req: Request) {
   const newProject: Project = { ...body, id: Date.now() };
   data.push(newProject);
   await kv.set(KV_KEY, data);
+  revalidatePath("/projects");
+  revalidatePath("/projects/[id]", "page");
   return NextResponse.json(newProject, { status: 201 });
 }
 
@@ -56,6 +36,8 @@ export async function PUT(req: Request) {
   let data = await getProjects();
   data = data.map((p) => (p.id === body.id ? body : p));
   await kv.set(KV_KEY, data);
+  revalidatePath("/projects");
+  revalidatePath("/projects/[id]", "page");
   return NextResponse.json(body);
 }
 
@@ -65,5 +47,7 @@ export async function DELETE(req: Request) {
   let data = await getProjects();
   data = data.filter((p) => p.id !== id);
   await kv.set(KV_KEY, data);
+  revalidatePath("/projects");
+  revalidatePath("/projects/[id]", "page");
   return NextResponse.json({ success: true });
 }
