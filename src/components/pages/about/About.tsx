@@ -139,6 +139,9 @@ export default function About() {
     </div>
   );
 
+  const years = +((Date.now() - new Date("2020-01-01").getTime()) / (1000 * 60 * 60 * 24 * 365.25)).toFixed(1);
+
+
   return (
     <section className={styles.about} id="about">
       <div className={styles.about__intro}>
@@ -169,7 +172,7 @@ export default function About() {
         <div className={styles.about__infoCard}>
           <h3 className={styles.about__infoTitle}>Coding for</h3>
           <p className={styles.about__infoText}>
-            {+((Date.now() - new Date("2020-1-01").getTime()) / (1000 * 60 * 60 * 24 * 365.25)).toFixed(1)}
+            {isNaN(years) ? '—' : years}
             <span>years</span>
           </p>
         </div>
