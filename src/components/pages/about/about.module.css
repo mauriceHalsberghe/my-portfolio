@@ -190,13 +190,17 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2.5rem;
   margin: 4rem 10% 0 10%;
+
+  @media (max-width: 1279px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 .about__infoCard {
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
   align-items: center;
   background: var(--bubble);
   border-radius: 2rem;
@@ -207,6 +211,10 @@
     inset 5px -5px 10px rgba(0, 0, 0, 0.2);
   
   cursor: default;
+
+  @media (max-width: 1279px) {
+    padding: 1.5rem;
+  }
 }
 
 .about__infoTitle {

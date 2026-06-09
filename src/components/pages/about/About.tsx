@@ -21,11 +21,8 @@ interface Tech {
 
 interface GitHubStats {
   status: string;
-  topLanguages: { name: string; percentage: number }[];
   totalCommits: number;
   longestStreak: number;
-  currentStreak: number;
-  profile_visitors: number;
 }
 
 type TechEntry = {
@@ -165,7 +162,7 @@ export default function About() {
         <div className={styles.about__infoCard}>
           <h3 className={styles.about__infoTitle}>GitHub</h3>
           <p className={styles.about__infoText}>
-            {stats?.totalCommits}<span>commits</span>
+            {stats ? stats.totalCommits : '—' }<span>commits</span>
           </p>
         </div>
 
@@ -180,7 +177,7 @@ export default function About() {
         <div className={styles.about__infoCard}>
           <h3 className={styles.about__infoTitle}>Longest Streak</h3>
           <p className={styles.about__infoText}>
-            {stats?.longestStreak}<span>days</span>
+            {stats ? stats?.longestStreak : '—'}<span>days</span>
           </p>
         </div>
 
