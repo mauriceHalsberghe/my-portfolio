@@ -1,5 +1,6 @@
 import { kv } from "@vercel/kv";
 import initialData from "@/data/projects.json";
+import { isKvAvailable } from "./kv";
 
 export type Project = {
   id: number;
@@ -16,6 +17,7 @@ export type Project = {
 export const KV_KEY = "projects";
 
 export async function getProjects(): Promise<Project[]> {
+  if (!isKvAvailable()) return initialData as Project[];
   const data = await kv.get<Project[]>(KV_KEY);
   if (!data) {
     await kv.set(KV_KEY, initialData);

@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { kv } from "@vercel/kv";
 import { getProjects, KV_KEY, type Project } from "@/lib/projects";
+import { isKvAvailable } from "@/lib/kv";
 
 async function isAuthorized(): Promise<boolean> {
   const store = await cookies();
@@ -19,6 +20,8 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
+  if (!isKvAvailable())
+    return NextResponse.json({ error: "KV not available" }, { status: 503 });
   if (!(await isAuthorized())) return unauthorized();
   const body = (await req.json()) as Omit<Project, "id">;
   const data = await getProjects();
@@ -31,6 +34,8 @@ export async function POST(req: Request) {
 }
 
 export async function PUT(req: Request) {
+  if (!isKvAvailable())
+    return NextResponse.json({ error: "KV not available" }, { status: 503 });
   if (!(await isAuthorized())) return unauthorized();
   const body = (await req.json()) as Project;
   let data = await getProjects();
@@ -42,6 +47,8 @@ export async function PUT(req: Request) {
 }
 
 export async function DELETE(req: Request) {
+  if (!isKvAvailable())
+    return NextResponse.json({ error: "KV not available" }, { status: 503 });
   if (!(await isAuthorized())) return unauthorized();
   const { id } = (await req.json()) as { id: number };
   let data = await getProjects();
