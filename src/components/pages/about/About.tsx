@@ -19,6 +19,15 @@ interface Tech {
   rating: number;
 }
 
+interface GitHubStats {
+  status: string;
+  topLanguages: { name: string; percentage: number }[];
+  totalCommits: number;
+  longestStreak: number;
+  currentStreak: number;
+  profile_visitors: number;
+}
+
 type TechEntry = {
   name: string;
   info: string;
@@ -40,6 +49,7 @@ const iconMap: Record<string, ComponentType<{ className?: string }>> = {
 export default function About() {
   const [intro, setIntro] = useState("");
   const [techStack, setTechStack] = useState<Tech[]>([]);
+  const [stats, setStats] = useState<GitHubStats | null>(null);
   const [activeCard, setActiveCard] = useState<string | null>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
@@ -78,6 +88,26 @@ export default function About() {
           }))
         );
       });
+
+    const CACHE_KEY = "gh_stats";
+    const CACHE_TTL = 60 * 60 * 1000; // 1 hour
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached) {
+      const { ts, data } = JSON.parse(cached);
+      if (Date.now() - ts < CACHE_TTL) {
+        setStats(data);
+        return;
+      }
+    }
+    fetch("https://github-stats.tashif.codes/mauricehalsberghe/stats")
+      .then((r) => r.json())
+      .then((data: GitHubStats) => {
+        if (data.status === "success") {
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
+          setStats(data);
+        }
+      });
+
   }, []);
 
   const handleCardClick = (name: string) => {
@@ -129,6 +159,31 @@ export default function About() {
           {techStack.map((tech) => renderCard(tech, tech.name))}
           {techStack.map((tech) => renderCard(tech, `${tech.name}-2`))}
         </div>
+      </div>
+
+      <div className={styles.about__infoWrapper}>
+        <div className={styles.about__infoCard}>
+          <h3 className={styles.about__infoTitle}>GitHub</h3>
+          <p className={styles.about__infoText}>
+            {stats?.totalCommits}<span>commits</span>
+          </p>
+        </div>
+
+        <div className={styles.about__infoCard}>
+          <h3 className={styles.about__infoTitle}>Coding for</h3>
+          <p className={styles.about__infoText}>
+            {+((Date.now() - new Date("2020-1-01").getTime()) / (1000 * 60 * 60 * 24 * 365.25)).toFixed(1)}
+            <span>years</span>
+          </p>
+        </div>
+
+        <div className={styles.about__infoCard}>
+          <h3 className={styles.about__infoTitle}>Longest Streak</h3>
+          <p className={styles.about__infoText}>
+            {stats?.longestStreak}<span>days</span>
+          </p>
+        </div>
+
       </div>
     </section>
   );
