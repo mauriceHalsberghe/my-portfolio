@@ -9,7 +9,7 @@
 }
 
 .about__intro {
-  cursor: default;
+  cursor: url('/cursors//Normal.cur'), auto;
   color: var(--text);
   display: flex;
   flex-direction: row;
@@ -107,7 +107,7 @@
   box-shadow:
     5px 0 10px rgba(0, 0, 0, 0.2),
     inset 5px -5px 10px rgba(0, 0, 0, 0.2);
-  cursor: default;
+  cursor: url('/cursors//Normal.cur'), auto;
   user-select: none;
   transition: box-shadow 0.25s ease;
 
@@ -210,7 +210,7 @@
     5px 0 10px rgba(0, 0, 0, 0.2),
     inset 5px -5px 10px rgba(0, 0, 0, 0.2);
   
-  cursor: default;
+  cursor: url('/cursors//Normal.cur'), auto;
 
   @media (max-width: 1279px) {
     padding: 1.5rem;

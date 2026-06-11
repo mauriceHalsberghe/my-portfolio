@@ -1,5 +1,5 @@
 .footer {
-    cursor: default;
+    cursor: url('/cursors//Normal.cur'), auto;
     padding-bottom: 3rem;
     font-size: 1.2rem;
     text-align: center;

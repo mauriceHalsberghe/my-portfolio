@@ -33,8 +33,9 @@
     margin: 3rem auto 0 auto;
     font-size: 1.8rem;
     font-style: italic;
+    text-align: center;
     color: var(--text);
-    cursor: default;
+    cursor: url('/cursors//Normal.cur'), auto;
   }
 }
 

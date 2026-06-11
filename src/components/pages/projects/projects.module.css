@@ -3,7 +3,7 @@
     padding: 8rem 0 2rem 0;
     margin: 0 auto;
     position: relative;
-    cursor: default;
+    cursor: url('/cursors//Normal.cur'), auto;
 
     @media (max-width: 480px) {
         padding-top: 4rem;
@@ -100,6 +100,7 @@
         }
 
         .projects__image {
+            cursor: url('/cursors//Link.cur'), pointer;
             transition: filter 0.4s ease, transform 0.8s ease;
             height: 350px;
             object-fit: cover;
@@ -112,6 +113,7 @@
         }
 
         h3 {
+            cursor: url('/cursors//Link.cur'), pointer;
             min-width: 350px;
             max-width: 450px;
             font-size: 2.5rem;
@@ -152,6 +154,7 @@
             }
 
             li {
+                cursor: url('/cursors//Link.cur'), pointer;
                 background-color: var(--main-blue);
                 width: fit-content;
                 padding: 0.5rem;
@@ -220,7 +223,7 @@
 }
 
 .footer {
-    cursor: default;
+    cursor: url('/cursors//Normal.cur'), auto;
     display: flex;
     flex-direction: column;
     align-items: center;

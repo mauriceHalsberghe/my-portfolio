@@ -44,7 +44,7 @@
   color: var(--background);
   border: none;
   font-size: 2.5rem;
-  cursor: pointer;
+  cursor: url('/cursors//Link.cur'), pointer;
   z-index: 10000;
   display: flex;
   justify-content: center;

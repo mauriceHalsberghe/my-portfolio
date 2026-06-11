@@ -30,7 +30,7 @@
         }
 
         .project__info {
-            cursor: default;
+            cursor: url('/cursors//Normal.cur'), auto;
             width: min-content;
             display: flex;
             align-items: center;
@@ -49,7 +49,7 @@
                 gap: 1rem;
 
                 li {
-                    cursor: default;
+                    cursor: url('/cursors//Normal.cur'), auto;
                     background-color: var(--main-red);
                     width: fit-content;
                     color: white;

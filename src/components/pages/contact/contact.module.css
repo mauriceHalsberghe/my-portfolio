@@ -15,7 +15,7 @@
   }
 
   .contact__title {
-    cursor: default;
+    cursor: url('/cursors//Normal.cur'), auto;
     font-family: var(--font-rubikmonoone);
     font-size: 6rem;
     color: var(--main-red);

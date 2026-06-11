@@ -1,4 +1,4 @@
 .modeToggle {
     z-index: 1000;
-    cursor: pointer;
+    cursor: url('/cursors//Link.cur'), pointer;
 }

@@ -74,7 +74,7 @@
     border-radius: 2rem;
     box-shadow: 5px 0 10px #0003, inset 5px -5px 10px #0003;
     padding: 0.5rem 2rem;
-    cursor: pointer;
+    cursor: url('/cursors//Link.cur'), pointer;
 
     &:active {
         box-shadow: inset 2px -2px 10px #0003;
@@ -118,7 +118,7 @@
     border-radius: 2rem;
     box-shadow: 5px 0 10px #0003, inset 5px -5px 10px #0003;
     padding: 0.35rem 1rem;
-    cursor: pointer;
+    cursor: url('/cursors//Link.cur'), pointer;
     font-size: 0.85rem;
     white-space: nowrap;
 
@@ -153,7 +153,7 @@
         justify-content: center;
 
         .tab {
-            cursor: pointer;
+            cursor: url('/cursors//Link.cur'), pointer;
             padding: 0.5rem 1rem;
             background-color: var(--middle);
             color: white;
@@ -184,7 +184,7 @@
 }
 
 .listItem {
-    cursor: pointer;
+    cursor: url('/cursors//Link.cur'), pointer;
     position: relative;
 
     &:hover {
