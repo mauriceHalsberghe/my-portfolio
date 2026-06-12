@@ -246,7 +246,6 @@
         cursor: none;
         position: relative;
 
-
         &::after {
             content: attr(data-label);
             opacity: 0;

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import styles from "./navbar.module.css";
 
@@ -13,6 +14,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 const sections = ["hero", "about", "projects", "contact"];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [activeSection, setActiveSection] = useState("start");
   const [easterEgg, setEasterEgg] = useState(false);
   const [width, setWidth] = useState(0);
@@ -101,7 +103,7 @@ export default function Navbar() {
               {sections.map((id) => (
                 <Link
                   key={id}
-                  href={`/#${id}`}
+                  href={pathname === "/" ? `#${id}` : `/#${id}`}
                   onClick={() => width < 481 && setShowNav(false)}
                   className={`${styles.navbar__link} ${
                     activeSection === id ? styles.active : ""

@@ -37,6 +37,7 @@ main {
   cursor: url('/cursors//Normal.cur'), auto;
 }
 
-a, button, [role="button"] {
+a, button, [role="button"],
+a *, button *, [role="button"] * {
   cursor: url('/cursors//Link.cur'), pointer;
 }

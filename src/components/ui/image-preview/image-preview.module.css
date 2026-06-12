@@ -29,6 +29,7 @@
   display: block;
   width: fit-content;
   border-radius: 1rem;
+  cursor: none;
   box-shadow:
       5px 0 10px rgba(0, 0, 0, 0.2),
       inset 5px -5px 10px rgba(0, 0, 0, 0.2);
